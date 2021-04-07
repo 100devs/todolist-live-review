@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
+    <h1>Items to Do</h1>
     <ul>
+    <!-- The following block loops through the array created from the database objects in the key zebra-->
+    <!-- It loops for the length of the array zebra-->
     <% for(let i = 0; i < zebra.length; i++) { %>
+        <!-- The items in the -->
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
