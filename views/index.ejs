@@ -10,19 +10,26 @@
 <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+    <% for(let i = 0; i < zebra.length; i++) { %>                   <!-- Loop over every element in 'zebra' -->
+        <li class='todoItem'>                                       <!--    Create a list item with a class of 'todoItem' -->
+            <% if(zebra[i].completed === true) {%>                  <!--        If the element from 'zebra' has a property 'completed' with a value of true -->
+            <span class="completed"><%= zebra[i].todo %></span>     <!--            Then add a span to the list item with a class of completed and the value stored in the zebra item's todo property -->
+            <% }else{ %>                                            <!--        Else -->
+            <span><%= zebra[i].todo %></span>                       <!--            Still add the todo property to the list item's span, but don't add the completed class -->
+            <% } %>                                                 <!--        End If -->
+            <span class='del'> Delete </span>                       <!--        Put the trashcan icon on the list item -->
+        </li>                                                       <!--    End list item-->
+    <% } %>                                                         <!-- End loop -->
     </ul>
+    <!-- TL;DR
+        We received an object from the server with some critical information.
+            1. An array of items to do, called 'zebra'
+            2. A number of items still not completed
+        We looped over the array and added it to the todo list.
+            If the item was completed, then it was marked as so with a strike-through
+    -->
 
-    <h2>Things left to do: <%= left %></h2>
+    <h2>Things left to do: <%= left %></h2>                         <!-- Insert the number of items not completed to the page -->
 
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
