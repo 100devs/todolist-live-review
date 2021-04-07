@@ -1,4 +1,4 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 60
+    "editor.fontSize": 18, // this changes the wild big font u use for stream
+    "terminal.integrated.fontSize": 18 //same 
 }

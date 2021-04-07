@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,28 +8,40 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
+        <% for(let i = 0; i < zebra.length; i++) { %>
+        <!--This loop is counting up to the length of our mongo db data array -->
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
+            <!--CONDITONAL LOGIC if the current element in our array has the key value pair of completed:true then we do the next thing -->
             <span class="completed"><%= zebra[i].todo %></span>
+            <!--if the previous condition was met put value of the todo property in a span (the span here will have the class completed and all css that cme with that) -->
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <!--if it doesnt have the completed true print it here with no class -->
+            <% } %>
             <span class='del'> Delete </span>
+            <!--adds a delete button to every single span created -->
         </li>
-    <% } %>    
+        <% } %>
     </ul>
 
     <h2>Things left to do: <%= left %></h2>
+    <!--we made a counter in our server.js counting all tasks that have completed===false so this is just showing remaing tasks -->
 
     <form action="/createTodo" method='POST'>
+        <!--POST MAGIC tells the server js that this inputted info is to be used in our create to do put -->
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <!--the name is super important our server js needs to know the inputted text will be the value for the property of todoItem -->
         <input type="submit">
+        <!--this is gunna be the submitter and now our html and server knows it -->
     </form>
 
     <script src="js/main.js"></script>
+    <!--links main.js from public it cant all be magic -->
 </body>
+
 </html>

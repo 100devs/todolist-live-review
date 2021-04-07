@@ -1,7 +1,11 @@
-h1{
+/* FIRE ASS CSS */
+
+h1 {
     color: red;
 }
-.completed{
+
+.completed {
     text-decoration: line-through;
+    /*we declared a class of completed so this adds a strike through */
     color: gray;
 }
