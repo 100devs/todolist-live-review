@@ -17,7 +17,9 @@
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %> 
+            <!-- if/else to mark item as completed or uncompleted, will affect how data looks through css -->
+            
             <span class='del'> Delete </span>
         </li>
     <% } %>    
@@ -31,6 +33,7 @@
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
+    <!-- action will call the app.put in server.js, feeding the body into call -->
 
     <script src="js/main.js"></script>
 </body>
