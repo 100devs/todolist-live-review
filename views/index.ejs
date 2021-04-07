@@ -10,7 +10,9 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    <!--Start of ejs, for loop is used to loop through our items in the db-->
     <% for(let i = 0; i < zebra.length; i++) { %>
+        <!--each item is returned as an li showing name of item and completed status-->
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
@@ -22,6 +24,7 @@
     <% } %>    
     </ul>
 
+    <!--grabs the number of items in the db that are not marked as completed-->
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
