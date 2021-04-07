@@ -10,25 +10,34 @@
 <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
+    <!-- loop through the array of data and documents we get back from connecting to the database -->
+    <% for(let i = 0; i < zebra.length; i++) { %> 
+    <!-- each loop will create a list item for our tasks -->
         <li class='todoItem'>
+            <!-- depending on completed status for task, it will change the styling of the task. Strike-through for a completed task-->
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
+            <!-- not completed will remain the same -->
             <% }else{ %>
+            <!-- span for our list item -->
             <span><%= zebra[i].todo %></span>
             <% } %>   
+            <!-- span for our deleting action -->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
 
     <h2>Things left to do: <%= left %></h2>
-
+    
+    <!-- Action and method allow us to give a type form. In this case it's a post -->
     <form action="/createTodo" method='POST'>
+        <!-- Give it a name so we can grab data from the form -->
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
 
+    <!-- links javascript file path inside the public folder so we can serve it when the ejs asks for it -->
     <script src="js/main.js"></script>
 </body>
 </html>
