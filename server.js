@@ -4,13 +4,19 @@ const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
+//trouble HAPPENS here, Leon. I feel like you go too fast on the mongoDB part, and as I tried to follow along on monday, I failed. I had to pause the stream, delete the cluster, start over and get it working.
+//the main problem I feel happens in the workflow between MongoDB and the server. This connection is "weird". I believe this needs to be sorted. The routing is pretty straight forward once this part here works.
 let db,
+    // That Database string must be explained in its 3 variables: login, password AND database name.   
     dbConnectionStr = process.env.DB_STRING,
+    //what is this? Did you make this todo here on the server? Or is it made on mongoDB? If its made on Mongo how do they connect? 
     dbName = 'todo'
-
+//not sure what is unifiedTopology, but if you say its to avoid errors, I set and forget it.
 MongoClient.connect(dbConnectionStr, {useUnifiedTopology: true})
     .then(client => {
+        //why are we using interpolation here? Will the dbName from line 13, change? If not, why not be literal about it?
         console.log(`Hey, connected to ${dbName} database`)
+        //assigning client.db(dbName) to the value of db. client came from the then above, and .db is a method on it. I'm ok with that knowledge at the moment.
         db = client.db(dbName)
     })
     .catch(err =>{
@@ -19,15 +25,19 @@ MongoClient.connect(dbConnectionStr, {useUnifiedTopology: true})
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+//not sure what this does. I will comment out on my code, and see the errors. But I understand that its setting the environment to work in a certain way.
 app.use(express.urlencoded({ extended: true }))
+//is this setting every response into json? Dont get to han
 app.use(express.json())
 
+//http get, will connect to collection "todos", find all, make it into and Array; and count all that are completed: false. Store in variables, pass to the ejs.
 app.get('/', async (req,res)=>{
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     res.render('index.ejs', {zebra: todoItems, left: itemsLeft})
 })
 
+//http post, will insert the data from the ejs <form>, creating one todo document with the request.body stringified
 app.post('/createTodo', (req, res)=>{
     db.collection('todos').insertOne({todo: req.body.todoItem, completed: false})
     .then(result =>{
@@ -36,6 +46,7 @@ app.post('/createTodo', (req, res)=>{
     })
 })
 
+//http put will update one todo that matches the request.body equal as rainbowUnicorn from fetch that came from the ejs.
 app.put('/markComplete', (req, res)=>{
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
         $set: {
@@ -48,6 +59,7 @@ app.put('/markComplete', (req, res)=>{
     })
 })
 
+//http pu to undo the complete
 app.put('/undo', (req, res)=>{
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
         $set: {
@@ -60,6 +72,7 @@ app.put('/undo', (req, res)=>{
     })
 })
 
+//http delete will find one document that matches the request body rainbowUnicorn that came from the fetch from the ejs
 app.delete('/deleteTodo', (req, res)=>{
     db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn})
     .then(result =>{
@@ -68,7 +81,8 @@ app.delete('/deleteTodo', (req, res)=>{
     })
     .catch( err => console.log(err))
 })
- 
+
+//initiate the server with the environment port, or our defined port.
 app.listen(process.env.PORT || PORT, ()=>{
     console.log('Server is running, you better catch it!')
 })    
