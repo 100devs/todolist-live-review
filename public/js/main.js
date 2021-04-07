@@ -24,19 +24,31 @@ Array.from(todoComplete).forEach((el)=>{
 })
 
 
-// This is the function 
+// This is the function used to delete items from the body.
 async function deleteTodo(){
+// Below is a variable created to grab the item chosen. I STILL DONT UNDERSTAND THIS
     const todoText = this.parentNode.childNodes[1].innerText
+// Because it's an async function, we run the try and catch
     try{
+// here we create the fetch with await because it's in an async function. We use the directory
+// deleteTodo. It is then called on in the app.delete so the name is important. We create an object
+// as well.
         const response = await fetch('deleteTodo', {
+// This is the type of method it is. Since it's to delete an item, we use delete
             method: 'delete',
+// This I DONT UNDERSTAND
             headers: {'Content-type': 'application/json'},
+// This I DONT UNDERSTAND, but i think it's just turning the json into a string??? I do know that
+// the object created inside has the property rainbowUnicorn, which is called on the app.delete
+// with deleteOne({ todo: request.body.rainbowUnicorn })
             body: JSON.stringify({
                 'rainbowUnicorn': todoText
             })
         })
+// Below is the data brought by the response.json object. 
         const data = await response.json()
         console.log(data)
+// This refreshes the page. Don't fully understand the code, but i know what it does.
         location.reload()
     }catch(err){
         console.log(err)
