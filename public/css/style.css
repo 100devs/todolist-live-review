@@ -1,7 +1,10 @@
-h1{
-    color: red;
+/* target teh h1 and changes its color to red */
+h1 {
+  color: red;
 }
-.completed{
-    text-decoration: line-through;
-    color: gray;
+
+/* targets completed class and gives it a line-through text-decor and changes its color to gray*/
+.completed {
+  text-decoration: line-through;
+  color: gray;
 }
