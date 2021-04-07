@@ -1,5 +1,10 @@
+//This allows us to grab our span with the class of "del". It will let us create an action when it is clicked
 const deleteBtn = document.querySelectorAll('.del')
+
+//this will allow us to grab our span in the todoItem li. allows us to get the span if it is not "completed"
 const todoItem = document.querySelectorAll('.todoItem span')
+
+//This allows us to grab our span with the class of "del". It will let us create an action when it is clicked
 const todoComplete = document.querySelectorAll('.todoItem span.completed')
 
 Array.from(deleteBtn).forEach((el)=>{
