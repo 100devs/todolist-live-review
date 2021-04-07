@@ -10,18 +10,24 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    <!-- Loop through zebra (the variable that stores the todo items, imported from main.js) -->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
+            <!-- Check if the item has a value of true for the property "completed" -->
             <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
+                <!-- If completed is true, print the value stored in the "todo" property for that item with the css class "completed"-->
+                <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
-            <span><%= zebra[i].todo %></span>
+                <!-- If "completed" property isn't true, print the todo item without any classes-->
+                <span><%= zebra[i].todo %></span>
             <% } %>   
             <span class='del'> Delete </span>
         </li>
+    <!-- close the for loop -->
     <% } %>    
     </ul>
 
+    <!-- use the left variable, imported from main.js, to display how many todo items don't have "completed" equal to true-->
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
