@@ -1,3 +1,5 @@
+<!-- This is the 'dynamic' html page that the user sees-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +12,7 @@
 <body>
     <h1>Todos</h1>
     <ul>
+      <!-- Here we iterate through the task list (Named zebra somewhere I think), and we show it as completed (changing it's class so the css shows it underlined), or not completed -->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
@@ -21,9 +24,9 @@
         </li>
     <% } %>    
     </ul>
-
+    <!-- Shows the amount of uncompleted tasks -->
     <h2>Things left to do: <%= left %></h2>
-
+    <!-- This is the form to add new tasks -->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
