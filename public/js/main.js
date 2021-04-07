@@ -55,10 +55,14 @@ async function deleteTodo(){
     }
 }
 
+/// This function here is to cross out items that have been clicked to mark as complete.
 async function markComplete(){
+// This code is like the one above
     const todoText = this.parentNode.childNodes[1].innerText
     try{
+// This one uses the fetch directory of markComplete which is called in the app.put.
         const response = await fetch('markComplete', {
+// Since this method isnt a delete action, we use put.
             method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
@@ -73,6 +77,8 @@ async function markComplete(){
     }
 }
 
+
+// Like everything above, except the directory is undo which is called in the second app.put method.
 async function undo(){
     const todoText = this.parentNode.childNodes[1].innerText
     try{
