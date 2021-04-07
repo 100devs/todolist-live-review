@@ -1,7 +1,7 @@
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('.todoItem span')
 const todoComplete = document.querySelectorAll('.todoItem span.completed')
-
+//5-15 make  sense
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
 })
@@ -13,7 +13,7 @@ Array.from(todoItem).forEach((el)=>{
 Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', undo)
 })
-
+//all of this functions make sense it's a matter of rembemering sytactical ordering
 async function deleteTodo(){
     const todoText = this.parentNode.childNodes[1].innerText
     try{
