@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <h1>Todos</h1>
+    <!-- an unordered list is created so that list items can be dynamically inserted as requests are made -->
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+      <!-- since we don't know how many items this page will have, we iterate over the data that we assigned the property name of 'zebra' in our server.js file get request -->
+      <% for(let i = 0; i < zebra.length; i++) { %>
+      <li class="todoItem">
+        <!-- since our data is an array of objects, we target each individual document by index. Here we are checking for items that have the property 'completed' with a value of true, and applying the class of 'completed' to them so they will get the special CSS styling, and it will add the text content as a span -->
+        <% if(zebra[i].completed === true) {%>
+        <span class="completed"><%= zebra[i].todo %></span>
+        <!-- if the property value of 'completed' in the database document is false, it will not apply the class to that item, but will still add the text content as a span -->
+        <% }else{ %>
+        <span><%= zebra[i].todo %></span>
+        <% } %>
+        <span class="del"> Delete </span>
+      </li>
+      <% } %>
     </ul>
-
+    <!-- this line checks the server.js get request for the number of documents that have the completed property of 'false', which we instructed it to put into a property called 'left' on line 52 of server.js -->
     <h2>Things left to do: <%= left %></h2>
 
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+    <!-- this form is where our server.js receives the information it needs to start a POST request -->
+    <form action="/createTodo" method="POST">
+      <input type="text" placeholder="Enter Todo Item" name="todoItem" />
+      <input type="submit" />
     </form>
-
+    <!-- we link our main.js file in here because it is a static file in the public folder that handles client-side interaction. We cannot handle event listeners on the server-side files -->
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>
