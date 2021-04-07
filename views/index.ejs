@@ -10,20 +10,25 @@
 <body>
     <h1>Todos</h1>
     <ul>
+        <!-- starting embedded JS with a for loop -->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
+            <!-- check if the doc from the array is have the completed set to true -->
             <% if(zebra[i].completed === true) {%>
+                <!-- if true, print with the class completed -->
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
+                <!-- if not true, print without the class completed -->
             <span><%= zebra[i].todo %></span>
             <% } %>   
+            <!-- print out the delete button -->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
-
+    <!-- print out the number of docs that have the completed set to false stored in the variable left -->
     <h2>Things left to do: <%= left %></h2>
-
+    <!-- The form is what we are using to make our post(create) request from the front end -->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
