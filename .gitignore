@@ -1,2 +1,4 @@
 node_modules
 .env
+
+//packages ignored by git to not show in github repo
