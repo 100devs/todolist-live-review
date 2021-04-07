@@ -10,18 +10,24 @@
 <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
+<% // start a for loop, repeat the loop for all of "zebra", incrementing by one each time %>
+        <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
+<% // if this item has been completed %>
             <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
+<% // then output the todo, with a class "completed" which probably has a strikethrough in CSS %>
+                <span class="completed"><%= zebra[i].todo %></span>
+<% // else output the todo, with no class %>
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
             <% } %>   
             <span class='del'> Delete </span>
         </li>
-    <% } %>    
+<% // end loop %>
+        <% } %>    
     </ul>
 
+<% // output the variable "left" which is the number of todos not marked complete %>
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
