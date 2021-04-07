@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<!-- Below is where we link our css stylesheet-->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,7 +19,8 @@
      and uncompleted styling.-->        
         <li class='todoItem'>
 <!-- The line below is an if else statement. Here, if the object in the array has the complete
-     property set to true, it changed the object item span class to completed-->            
+     property set to true, it changed the object item span class to completed. Im confused about 
+     the zebra[i].todo   WHAT IS THE .todo????? -->            
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
 <!-- The next line is the else, if the property is not set to true, it keeps the default .todoItem
@@ -33,7 +35,8 @@
         </li>
     <% } %>    
     </ul>
-
+<!-- This keeps count of how many items are left.  I need to review the video for this code to
+     see how this works. I think, this would be checked by using zebra.lenght??? -->
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
