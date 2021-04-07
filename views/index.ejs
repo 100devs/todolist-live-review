@@ -10,13 +10,25 @@
 <body>
     <h1>Todos</h1>
     <ul>
+<!-- Below is the for loop we create to go through all the list items that are being added. 
+     The <%  %> allows us to write javascript within an index.ejs. Here, we name the array
+     zebra. We loop through it with length, and it renders it on the page.-->        
     <% for(let i = 0; i < zebra.length; i++) { %>
+<!-- We added a class to the list in order to be able to target certain items for the completed
+     and uncompleted styling.-->        
         <li class='todoItem'>
+<!-- The line below is an if else statement. Here, if the object in the array has the complete
+     property set to true, it changed the object item span class to completed-->            
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
+<!-- The next line is the else, if the property is not set to true, it keeps the default .todoItem
+     span class. -->            
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %>
+<!-- Below is the Delete section that listens to the eventListener in the main.js, once delete
+     is clicked, it deletes the item. We added the span class 'del' to be able to focus in on it
+     with the document.querySelector('.del') method.-->               
             <span class='del'> Delete </span>
         </li>
     <% } %>    
