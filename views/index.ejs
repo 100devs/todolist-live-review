@@ -10,20 +10,27 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    <!-- loop through zebra a.k.a all the todos -->
     <% for(let i = 0; i < zebra.length; i++) { %>
+    <!-- and for each document we render the following html elements -->
         <li class='todoItem'>
+        <!-- if its marked as completed we add a class of... completed -->
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
+
+            <!-- if not, we don't -->
             <span><%= zebra[i].todo %></span>
             <% } %>   
+            <!-- delete! -->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
-
+    <!-- left === the number of documents with completed set to false -->
     <h2>Things left to do: <%= left %></h2>
 
+    <!-- a form that sends the /createTodo POST request to create a new document-->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
