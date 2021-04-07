@@ -4,8 +4,8 @@ const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
-//trouble HAPPENS here, Leon. I feel like you go too fast on the node part, and as I tried to follow along on monday, I failed. I had to pause the stream, delete the clusters, start over and get it working.
-//the main problem I feel happens in the workflow between MongoDB and the server. This connection is "weird".
+//trouble HAPPENS here, Leon. I feel like you go too fast on the mongoDB part, and as I tried to follow along on monday, I failed. I had to pause the stream, delete the cluster, start over and get it working.
+//the main problem I feel happens in the workflow between MongoDB and the server. This connection is "weird". I believe this needs to be sorted. The routing is pretty straight forward once this part here works.
 let db,
     // That Database string must be explained in its 3 variables: login, password AND database name.   
     dbConnectionStr = process.env.DB_STRING,
@@ -37,7 +37,7 @@ app.get('/', async (req,res)=>{
     res.render('index.ejs', {zebra: todoItems, left: itemsLeft})
 })
 
-//http post, will insert the data from the ejs <form>
+//http post, will insert the data from the ejs <form>, creating one todo document with the request.body stringified
 app.post('/createTodo', (req, res)=>{
     db.collection('todos').insertOne({todo: req.body.todoItem, completed: false})
     .then(result =>{
@@ -46,6 +46,7 @@ app.post('/createTodo', (req, res)=>{
     })
 })
 
+//http put will update one todo that matches the request.body equal as rainbowUnicorn from fetch that came from the ejs.
 app.put('/markComplete', (req, res)=>{
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
         $set: {
@@ -58,6 +59,7 @@ app.put('/markComplete', (req, res)=>{
     })
 })
 
+//http pu to undo the complete
 app.put('/undo', (req, res)=>{
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
         $set: {
@@ -70,6 +72,7 @@ app.put('/undo', (req, res)=>{
     })
 })
 
+//http delete will find one document that matches the request body rainbowUnicorn that came from the fetch from the ejs
 app.delete('/deleteTodo', (req, res)=>{
     db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn})
     .then(result =>{
@@ -78,7 +81,8 @@ app.delete('/deleteTodo', (req, res)=>{
     })
     .catch( err => console.log(err))
 })
- 
+
+//initiate the server with the environment port, or our defined port.
 app.listen(process.env.PORT || PORT, ()=>{
     console.log('Server is running, you better catch it!')
 })    
