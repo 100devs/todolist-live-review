@@ -1,4 +1,4 @@
-{
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 60
-}
+{ //open code block
+    "editor.fontSize": 14, // the size of the font displayed in the VSCode editor
+    "terminal.integrated.fontSize": 14 // the size of the font displayed in the VSCode terminal
+} //close code block

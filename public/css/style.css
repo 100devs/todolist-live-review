@@ -1,7 +1,9 @@
-h1{
-    color: red;
+h1 {
+  color: red;
 }
-.completed{
-    text-decoration: line-through;
-    color: gray;
+.completed {
+  text-decoration: line-through;
+  color: gray;
 }
+
+/* turns the h1 red and items with a class of completed will show up grey and with strike-through text */

@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
-</head>
+</head> // all of our basic doctype header stuff, letting the browser know how to interpret things and pointing it to our css file
 <body>
     <h1>Todos</h1>
+
+    <!-- this section displays our array or todo items in a list, with completed items assigned the class "completed" -->
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
+    <% for(let i = 0; i < zebra.length; i++) { %> this will
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
@@ -21,7 +23,7 @@
         </li>
     <% } %>    
     </ul>
-
+<!-- this will display the number of items with a completed state of false -->
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
