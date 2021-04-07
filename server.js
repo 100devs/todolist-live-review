@@ -44,7 +44,7 @@ app.put('/markComplete', (req, res)=>{ // UPDATE of crUd. first arg is our endpo
     })
     .then(result =>{ // If successful, we should see the following:
         console.log('Marked Complete') // 'Marked Complete' should appear in our terminal
-        res.json('Marked Complete') // ** not sure what this does **
+        res.json('Marked Complete') // ** not sure what it does, but is needed in order to fulfill promise on line 27 in main.js **
     })
 })
 
@@ -56,7 +56,7 @@ app.put('/undo', (req, res)=>{ // UPDATE of crUd. first arg is our endpoint, whi
     })
     .then(result =>{// If successful, we should see the following:
         console.log('Marked Complete') // 'Marked Complete' should appear in our terminal
-        res.json('Marked Complete') // ** not sure what this does **
+        res.json('Marked Complete') // ** not sure what it does, but is needed in order to fulfill promise on line 27 in main.js **
     })
 })
 
@@ -64,7 +64,7 @@ app.delete('/deleteTodo', (req, res)=>{ // DELETE of cruD. first arg is our endp
     db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn}) // We are deleting a specific document located in our database that has a key of 'todo' and the value of whatever is stored in 'req.body.rainbowUnicorn' (see line 24 in main.js)
     .then(result =>{ // If successful, we should see the following:
         console.log('Deleted Todo') // 'Deleted Todo' should appear in our terminal
-        res.json('Deleted It') // ** not sure what this does **
+        res.json('Deleted It') // ** not sure what it does, but is needed in order to fulfill promise on line 27 in main.js **
     })
     .catch( err => console.log(err)) // If we made a mistake somewhere, we will be notified in the terminal
 })
