@@ -8,15 +8,25 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
+    <h1>To dos</h1>
     <ul>
+        <!-- loop through all the data from the connection to the database, that got stored as an array into data and then into the key zebra-->
+        <!-- % around each line of code -->
+        <!-- we loop once for every document inside zebra array -->
     <% for(let i = 0; i < zebra.length; i++) { %>
+        <!-- for each loop we create an li with data we got from the documents in the zebra array-->
         <li class='todoItem'>
+            <!-- conditional inside the loop, if it's completed the span will have the class 'completed' which will style it to be striked through-->
             <% if(zebra[i].completed === true) {%>
+            
             <span class="completed"><%= zebra[i].todo %></span>
+            <!-- if it is not marked 'completed' don't add the class -->
             <% }else{ %>
+            <!-- to put in a variable, it's  <%= VARIABLE %> -->
+            <!-- create a span inside the li and it's value is the current object.todo we are looping through. Adds 1 li and these spans each loop through -->
             <span><%= zebra[i].todo %></span>
             <% } %>   
+            <!-- add a span with an icon or word to delete the li, will add eventListener-->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
@@ -24,11 +34,13 @@
 
     <h2>Things left to do: <%= left %></h2>
 
+    <!-- action establishes a request, method post so that I know we are making post requests -->
     <form action="/createTodo" method='POST'>
+        <!-- name of input is importanat cause thats where we will look for to get ddata out of the form -->
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
-
+<!-- link js file that is inside the public folder so we can serve it when the ejs asks for it -->
     <script src="js/main.js"></script>
 </body>
 </html>
