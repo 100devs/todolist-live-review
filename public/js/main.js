@@ -20,7 +20,9 @@ Array.from(todoComplete).forEach((el)=>{
 })
 //this async function allows us to connect to the app.delete in server.js . it selects the li wthat matches the "delete" that was clicked on and sends all that info to server.js in order for our Delete (From CRUD) to fire. At the end, it reloads our page, and by doing so, requestes a GET (The C in CRUD)
 async function deleteTodo(){
+    //selecting the li elements from ejs and putting them in constant todoText
     const todoText = this.parentNode.childNodes[1].innerText
+    //making the request to the server with pathc deleteTodo, marked as method delete (CRUD), headers are just some meta data that is usually patched through http request, Do need to know now and who knows what it does. We are then saying that we want to send the body as a json file(s)
     try{
         const response = await fetch('deleteTodo', {
             method: 'delete',
@@ -31,14 +33,17 @@ async function deleteTodo(){
         })
         const data = await response.json()
         console.log(data)
+        //reload main page. initiates GET request from server.js
         location.reload()
     }catch(err){
         console.log(err)
     }
 }
-
+//This function allows us to send a PUT (Update request to the server.js). Specifically we want to rainbowUnicorn
 async function markComplete(){
+    //grabbing our li text from the ejs and putting them in variable todoText
     const todoText = this.parentNode.childNodes[1].innerText
+    //making the request to the server with path markComplete, marked as method PUT (Update in CRUD), headers are just some meta data that is usually patched through http request, Do need to know now and who knows what it does. We are then saying that we want to send the body as a json file(s)
     try{
         const response = await fetch('markComplete', {
             method: 'put',
@@ -47,9 +52,11 @@ async function markComplete(){
                 'rainbowUnicorn': todoText
             })
         })
+        //log our results to data and reload the page (GET)
         const data = await response.json()
         console.log(data)
         location.reload()
+        //catch error if things go south
     }catch(err){
         console.log(err)
     }

@@ -35,7 +35,7 @@ app.post('/createTodo', (req, res)=>{
         res.redirect('/')
     })
 })
-
+//receives the put request from main.js function markComplete()
 app.put('/markComplete', (req, res)=>{
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
         $set: {
