@@ -10,7 +10,9 @@
 <body>
     <h1>Todos</h1>
     <ul>
+//iterates through array of returned data from API
     <% for(let i = 0; i < zebra.length; i++) { %>
+//for each item, render an li, add span with completed class if complete true, otherwise just a span, then a delete span
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
@@ -21,9 +23,9 @@
         </li>
     <% } %>    
     </ul>
-
+//lists all items left to do
     <h2>Things left to do: <%= left %></h2>
-
+//form for adding new items
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
