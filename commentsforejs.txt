@@ -1,0 +1,4 @@
+13 - running a loop from 0 to length of zebra array with holds all documents
+15 - check completed property and if true we add the completed class to the span
+18 - else just add the span without the class 
+25 - utilizing our left variable to show tasks left to complete. put in h2
