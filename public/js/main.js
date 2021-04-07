@@ -21,7 +21,7 @@ Array.from(todoItem).forEach((el)=>{
 Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', undo)
 })
-//this async function allows us to connect to the app.delete in server.js . it selects the li wthat matches the "delete" that was clicked on and sends all that info to server.js in order for our Delete (From CRUD) to fire. At the end, it reloads our page, and by doing so, requestes a GET (The C in CRUD)
+//this async function allows us to connect to the app.delete in server.js . it selects the li wthat matches the "delete" that was clicked on and sends all that info to server.js in order for our Delete (From CRUD) to fire. At the end, it reloads our page, and by doing so, requestes a GET (The R in CRUD)
 async function deleteTodo(){
     //selecting the li elements from ejs and putting them in constant todoText
     const todoText = this.parentNode.childNodes[1].innerText
