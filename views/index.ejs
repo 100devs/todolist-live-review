@@ -10,18 +10,23 @@
 <body>
     <h1>Todos</h1>
     <ul>
+        <!-- for each document in database... -->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
+            <!-- create a span with a class of completed if they have a complete of true, holding the text of the todo field from the db (which is the name of the task inthe db) -->
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
+            <!-- else, create a span with no class but containing the text of the todo field from the database (which is the name of the task) -->
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
             <% } %>   
+            <!-- adds a delete button to the list entry too. -->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
 
+    <!-- creates a counter based on the count pulled from the database, transmitted to the EJS via the main.js get request -->
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
