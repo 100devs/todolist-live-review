@@ -1,6 +1,9 @@
+/* //changing our h1 text to the color read */
 h1{
     color: red;
 }
+
+/* We are using the class of the element in order to update it once it is clicked on (will allow us to know that the task is complete) */
 .completed{
     text-decoration: line-through;
     color: gray;

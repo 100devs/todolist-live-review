@@ -1,3 +1,5 @@
+
+<!-- header for html. holds all our metadata. language, script for css, keywords, a bunch of stuff. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +9,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- below is what is rendered in the DOM (body) -->
 <body>
     <h1>Todos</h1>
     <ul>
+        <!-- we made a for loop here that would allow us to input our data from Mongo DB, we use js in order to dynamically render various spans-->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
@@ -21,7 +25,7 @@
         </li>
     <% } %>    
     </ul>
-
+<!-- Im not sure how we got this count -->
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
