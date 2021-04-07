@@ -1,7 +1,8 @@
-h1{
-    color: red;
+h1 {
+  color: purple;
 }
-.completed{
-    text-decoration: line-through;
-    color: gray;
+
+.completed {
+  text-decoration: line-through;
+  color: palevioletred;
 }
