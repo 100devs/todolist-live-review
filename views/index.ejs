@@ -10,23 +10,30 @@
 <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
+    <!-- create a for-loop that goes through the zebra array from the server-side JS. This array contains all the documents in the 'todo' collection from our database -->
+    <% for(let i = 0; i < zebra.length; i++) { %> 
+        <!-- create a list item for each element in 'zebra' -->
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
+                <span class="completed"><%= zebra[i].todo %></span> <!-- if the element object has a completed property value of 'true', add a span in the li
+                 with the class "completed". Then add text content to the span using the element object's 'todo' property value -->
             <% }else{ %>
-            <span><%= zebra[i].todo %></span>
+                <span><%= zebra[i].todo %></span> <!-- do the same thing as the code block in the if-statement, except don't add the "completed" class to the span -->
             <% } %>   
             <span class='del'> Delete </span>
         </li>
-    <% } %>    
+    <% } %>    <!-- closes the for-loop -->
     </ul>
 
-    <h2>Things left to do: <%= left %></h2>
+    <h2>Things left to do: <%= left %></h2> <!-- prints how many tasks are left on the to-do list, using the 'left' variable which was fed into this file using res.render() in server.js -->
 
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+    <form action="/createTodo" method='POST'> <!-- create a form with an action endpoint that matches the route for posting. Specify that the method for the form is 'POST'  -->
+        <input type="text" placeholder="Enter Todo Item" name='todoItem'> <!-- create a field for the user to enter information
+        ** the type changes the keyboard that pops up for mobile users
+        ** the placeholder text can explain to the user what they should enter in this input box
+        ** the name attribute's value ('todoItem') is the name of the property in the req.body object inside the app.post route, which we will send to our database collection using 'insertOne()'
+        -->
+        <input type="submit"> <!-- type of 'submit' issues the POST request to the server -->
     </form>
 
     <script src="js/main.js"></script>
