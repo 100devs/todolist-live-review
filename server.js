@@ -89,17 +89,23 @@ app.put('/markComplete', (req, res)=>{
         }
     })
 /// Like everything else, the above is a promise, so we have to create a then. Make it result again,
-/// the response here is res.json (not sure what that means) LOOK THIS UP!!!
+
     .then(result =>{
         console.log('Marked Complete')
+/// the response here is res.json (not sure what that means) LOOK THIS UP!!!        
         res.json('Marked Complete')
     })
 })
 
 
 
-
+/// This here is another put action that updates something. This one here targets items that have
+/// the property true instead of false. It helps change it back to false, which removes the css 
+/// style created by the main.js eventListener function. The /undo is found by the fetch() in undo
+/// function.
 app.put('/undo', (req, res)=>{
+/// looks for the items with properties set to true, and it's switched to false. It finds it
+/// by the .todoItem span.completed classes.
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
         $set: {
             completed: false
@@ -107,19 +113,30 @@ app.put('/undo', (req, res)=>{
     })
     .then(result =>{
         console.log('Marked Complete')
+/// Again LOOK THIS UP. Not sure what this does        
         res.json('Marked Complete')
     })
 })
 
+
+/// This section is to delete an item from the list. Points to the function in the main.js
+/// that has the fetch(deleteTodo).
 app.delete('/deleteTodo', (req, res)=>{
+/// This again, finds the database collection named todos. This one uses the built-in function
+/// deleteOne. It deletes one by finding it using the api directory req.body.rainbowUnicorn    
     db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn})
+/// It's a promise, so you have to run the .then. HOW CAN I TELL IF SOMETHING IS A PROMISE???    
     .then(result =>{
         console.log('Deleted Todo')
+/// AGAIN LOOK THIS UP
         res.json('Deleted It')
     })
     .catch( err => console.log(err))
 })
  
+/// This is the app.listen that helps your server side get running. The PORT is the one we create.
+/// NOW, im still not 100% comfortable using the process.env. I have to look at the video again to 
+/// see how this is done. I do know that if that doesnt work, the || is or our PORT 2121
 app.listen(process.env.PORT || PORT, ()=>{
     console.log('Server is running, you better catch it!')
 })    
