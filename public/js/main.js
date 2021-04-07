@@ -78,7 +78,7 @@ async function markComplete(){
 }
 
 
-// Like everything above, except the directory is undo which is called in the second app.put method.
+// Like everything above, except the directory is undo which is called in the second app.put method..
 async function undo(){
     const todoText = this.parentNode.childNodes[1].innerText
     try{
