@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!-- this is our "html page" but allows javascript inside to generate or render dynamic html pages based on data from the user -->
+<!-- embedded javascript template -->
+<!-- <!DOCTYPE html> html 5 -->
+<html lang="en"> <!--words appear in english -->
+<head> <!-- links to stylesheets and everything else the browser needs that the user doesnt see goes here in the head-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body> <!-- here is what the user will see -->
     <h1>Todos</h1>
-    <ul>
+    <ul> <!--here is our js for loop. this will loop through each todo to check to see if it has a property of completed, and if it does we will add a class of completed to it to style it, if not it doesnt get the completed class, it is just a regular span-->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
@@ -17,18 +19,18 @@
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
             <% } %>   
-            <span class='del'> Delete </span>
+            <span class='del'> Delete </span><!-- here we add the word 'delete' next to each span, giving it the class of 'del' will allow us to target it for an event listener-->
         </li>
     <% } %>    
     </ul>
 
-    <h2>Things left to do: <%= left %></h2>
+    <h2>Things left to do: <%= left %></h2> <!--more ejs syntax. allows us to use a variable inside the h2-->
 
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+    <form action="/createTodo" method='POST'> <!-- here is our form that the user will see and fill out, giving it the method of 'POST' bc it is reading? the action of '/createTodo' will tell it where to find instructions. in our server.js file we have app.post('/createTodo') that matches this and gives instructions-->
+        <input type="text" placeholder="Enter Todo Item" name='todoItem'> <!-- the name attribute is important here, it sets the property of what the user fills in this way we are able to grab what the user enters (for example, request.body.todoItem should give us what was entered in the form-->
+        <input type="submit"> <!-- a button for the form -->
     </form>
 
-    <script src="js/main.js"></script>
-</body>
+    <script src="js/main.js"></script> <!-- here we link our client side javascript -->
+</body> 
 </html>
