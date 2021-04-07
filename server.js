@@ -1,12 +1,12 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
-// comment
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+const express = require('express') // grabbing express module that we downloaded using 'npm install express' and storing it in a variable
+const app = express() // storing the express 'method' or 'function' in a variable named app
+const MongoClient = require('mongodb').MongoClient // grabbing MongoCient (property) from the 'mongodb' module that we installed using 'npm install mongodb' and storing it in a variable named MongoClient
+const PORT = 2121 // declaring a port and storing it in a variable named PORT. Port will default to 3000 if we don't declare one
+require('dotenv').config() // installed using 'npm install dotenv'. Using this will hide our sensitive information i.e. usernames, passwords 
+
+let db, // declaring a varible named 'db' to store the name of our database located on mongodb (see line 14)
+    dbConnectionStr = process.env.DB_STRING, //storing our secret link to mongodb database in a variable (see line 5)
+    dbName = 'todo' // Naming our database. this same name with appear in the cluster when we log into mongodb Atlas
 
 MongoClient.connect(dbConnectionStr, {useUnifiedTopology: true})
     .then(client => {
