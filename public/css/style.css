@@ -1,7 +1,78 @@
-h1{
-    color: red;
+/******************************************
+/* CSS
+/*******************************************/
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
 }
-.completed{
-    text-decoration: line-through;
-    color: gray;
+/* Clear fix hack */
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
 }
+.clear {
+	clear: both;
+}
+/******************************************
+/* LAYOUT
+/*******************************************/
+body {
+    background: url(https://c1.sfdcstatic.com/content/dam/blogs/ca/Blog%20Posts/How%20to%20Increase%20Productivity%20Without%20Increasing%20Stress_Open%20Graph%20Image.png);
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.contain {
+    border-radius: 20px;
+    background-color: #9fcdf5f2;
+    border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin: 0 auto;
+    width: 50rem;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: ivory;
+    font-size: 15px;
+    font-weight: 900;
+}
+form input {
+    width: 30rem;
+    padding: 10px;
+    border-radius: 10px;
+}
+button {
+    border-radius: 10px;
+    padding: 10px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: ivory;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+}
+.toDo {
+    width: 100%;
+}
+li {
+    display: flex;
+    justify-content: space-evenly;
+}
+.edit {
+    background-color: #b2d3db;
+    border: solid #24455b;
+}
+.delete {
+    background-color: #ff8c71;
+    border: solid #f80000
+}
+form button {
+    background-color: #95e5a3;
+    border-color:green;
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
