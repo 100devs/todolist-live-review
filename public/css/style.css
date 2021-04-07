@@ -1,3 +1,4 @@
+//a h1 color change just to make sure our css file is connected to our EJS file and a completed class that is activated with our conditional logic in our EJS file.
 h1{
     color: red;
 }

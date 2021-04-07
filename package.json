@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  //dependencies that you need to download for your app to work
   "author": "",
   "license": "ISC",
   "dependencies": {
