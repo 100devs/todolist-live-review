@@ -10,12 +10,12 @@
 <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
+    <% for(let i = 0; i < zebra.length; i++) { %> <!--loops through the key (created on line 28 in server.js) and returns a document from the database -->
         <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
+            <% if(zebra[i].completed === true) {%> <!--if the document has a key value pair of completed: true... -->
+            <span class="completed"><%= zebra[i].todo %></span> <!--...return a span with a class of 'completed' -->
             <% }else{ %>
-            <span><%= zebra[i].todo %></span>
+            <span><%= zebra[i].todo %></span> <!-- ...else return the document -->
             <% } %>   
             <span class='del'> Delete </span>
         </li>
