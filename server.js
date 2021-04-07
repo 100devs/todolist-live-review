@@ -52,7 +52,7 @@ app.get('/', async (req,res)=>{
 app.post('/createTodo', (req, res)=>{
         //createTodo will be the action in ejs file
     db.collection('todos').insertOne({todo: req.body.todoItem, completed: false})
-        //
+        //create 1 item in db, data croms from ejs body.todoItem
     .then(result =>{
         console.log('Todo has been added!')
         //logs in server console
@@ -63,18 +63,23 @@ app.post('/createTodo', (req, res)=>{
 //post - create part of crud
 
 app.put('/markComplete', (req, res)=>{
+    //called from listen event in main.js
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
+        //update one item in db may be better to target _id
         $set: {
             completed: true
         }
+        //update the completed field status set to true(boolean value)
     })
     .then(result =>{
         console.log('Marked Complete')
         res.json('Marked Complete')
     })
 })
+//put - update part of crud
 
 app.put('/undo', (req, res)=>{
+    //called from listen event in main.js
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
         $set: {
             completed: false
@@ -85,16 +90,22 @@ app.put('/undo', (req, res)=>{
         res.json('Marked Complete')
     })
 })
+//put - update part of crud same as first put however this one is to set completed to false
 
 app.delete('/deleteTodo', (req, res)=>{
+    //called from a listen event in main.js
     db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn})
+    //this will look through database for an item that matches data from DOM
     .then(result =>{
         console.log('Deleted Todo')
         res.json('Deleted It')
     })
     .catch( err => console.log(err))
 })
+//delete - delete part of crud
  
 app.listen(process.env.PORT || PORT, ()=>{
+    //set the port that the server is running on will catch calls coming to the part
+    //process.env.PORT is for a server that will asign a port of its choice ie heroku
     console.log('Server is running, you better catch it!')
 })    
