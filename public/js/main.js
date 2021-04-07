@@ -7,14 +7,17 @@ const todoItem = document.querySelectorAll('.todoItem span')
 //This allows us to grab our span with the class of "del". It will let us create an action when it is clicked
 const todoComplete = document.querySelectorAll('.todoItem span.completed')
 
+
+//allows us to cycle through our ejs li and determine where the click for the delete occurred ???
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
 })
 
+//allows us to cycle through our ejs li and determine where the click for the mark complete occurred ???
 Array.from(todoItem).forEach((el)=>{
     el.addEventListener('click', markComplete)
 })
-
+//allows us to cycle through our ejs li and determine where the click for the undo occurred ???
 Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', undo)
 })
