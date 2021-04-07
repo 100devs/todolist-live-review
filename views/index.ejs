@@ -1,34 +1,54 @@
+<!-- Doctype sets the stage and instructs the browser what to expect going forward with this document -->
 <!DOCTYPE html>
+<!-- Beginning HTML tag and the language property signifying English as the intended language -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Under the hood look at what the inside of this document is doing. Character set, device details, title and currently just a CSS sheet property in here now -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <!-- The main stage for this document. Where most of the meat lies. The dreams lie inside the body tag. It encompasses the content the user will see and interact with. -->
+  <body>
+    <!-- H1 tags should be limited to one per page. It's the main idea/thread/scope of the page. Large and in charge. -->
     <h1>Todos</h1>
+    <!-- Untitled list - sort of self explanatory but it holds list items and is mostly anonymous -->
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+      <!-- Embedded JavaScript inside these odd looking tags. Allows seemingly HTML documents to hold behavior and adaptation from the JavaScript it employs. This first line is an embedded for loop to go for the length of the zebra list passed into it. -->
+      <% for(let i = 0; i < zebra.length; i++) { %>
+      <!-- A lonely list item starting tag with a specified class property -->
+      <li class="todoItem">
+        <!-- An embedded conditional statement, for when completed items are indeed true -->
+        <% if(zebra[i].completed === true) {%>
+        <!-- A span of text for that completed item. It will spit out the particular todo list item when it's fully push to the page. -->
+        <span class="completed"><%= zebra[i].todo %></span>
+        <!-- Beginning else block -->
+        <% }else{ %>
+        <!-- A span of text for when those list items are in fact not completed -->
+        <span><%= zebra[i].todo %></span>
+        <!-- Closing else block tag -->
+        <% } %>
+        <!-- Span labelled and classed for deleting sibling'd todos  -->
+        <span class="del"> Delete </span>
+        <!-- Closing list item tag -->
+      </li>
+      <!-- Closing for loop function brace -->
+      <% } %>
     </ul>
-
+    <!-- Heading size 2. Should only be a couple-few of these per page. Less important headings but still large enough for emphasis.
+ This one also included embedded "left" object injected from EJS -->
     <h2>Things left to do: <%= left %></h2>
-
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+    <!-- Form for holding submission information. This form has the action tied to /createTodo and a POST method which will be used to create some sort of information. -->
+    <form action="/createTodo" method="POST">
+      <!-- Text input for the todoItem -->
+      <input type="text" placeholder="Enter Todo Item" name="todoItem" />
+      <!-- Simple submit button which will trigger the form action -->
+      <input type="submit" />
     </form>
-
+    <!-- Script tag for choosing the main.js as the JavaScript instruction file -->
     <script src="js/main.js"></script>
-</body>
+    <!-- Closing body and html tags to finalize the scope of this document -->
+  </body>
 </html>
