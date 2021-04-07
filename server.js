@@ -74,18 +74,30 @@ app.post('/createTodo', (req, res)=>{
 
 
 
-
+/// This section is to update items that are already on the list. This is dependant upon
+/// our main.js code. '/markComplete comes from the variable todoItem, which is meant to select
+/// all items that have the class .todoItem AND span. It is then an eventListener function
 app.put('/markComplete', (req, res)=>{
+/// Like above, it continues to look at the database named todos, only here, we are updating and item
+/// We look for the item by req.body.rainbowUnicorn, which is defined within the main.js. 
+/// The variable todoText is what rainbowUnicorn points to
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
+/// Every item that is posted, has the false property set as default. This put action changes it from
+/// false to true. 
         $set: {
             completed: true
         }
     })
+/// Like everything else, the above is a promise, so we have to create a then. Make it result again,
+/// the response here is res.json (not sure what that means) LOOK THIS UP!!!
     .then(result =>{
         console.log('Marked Complete')
         res.json('Marked Complete')
     })
 })
+
+
+
 
 app.put('/undo', (req, res)=>{
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
