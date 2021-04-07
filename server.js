@@ -92,9 +92,11 @@ app.put('/undo', (req, res)=>{
         res.json('Marked Complete')
     })
 })
-//The D in CRUD - this allows us to delete li found in the ejs
+//The D in CRUD - this allows us to delete li found in the ejs (but really deletes in Mongo). It is triggered by clicking "delete" in the client side ejs. (which in turn triggers main.js)
 app.delete('/deleteTodo', (req, res)=>{
+    //look for collection 'todos' find and delete one that matches our body data from ejs
     db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn})
+    //update databased and return as json
     .then(result =>{
         console.log('Deleted Todo')
         res.json('Deleted It')
