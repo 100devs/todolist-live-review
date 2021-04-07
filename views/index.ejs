@@ -16,18 +16,21 @@
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %>
             <span class='del'> Delete </span>
         </li>
-    <% } %>    
+    <% } %>
     </ul>
+    <!-- the above section is connected to the get request in server.js. the above creates a list via a for loop. it loops through the documents in the collection via the zebra property(?) name, which was assigned in the get request to the metaphorical name of the document (?) in the database/collection. if the completed property of the document == true, the span with the completed class is rendered; if the completed property is false, the span with no class is rendered. then there is the word "delete" with the clas 'del' which will have a click event attached to it in main.js -->
 
     <h2>Things left to do: <%= left %></h2>
+    <!-- this shows how many items are left to complete, with 'left' populating with any documents with 'completed: false' in the database via the get request -->
 
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
+    <!-- the above form is how we submit a post/create request. the text put into the input will become 'todoItem' in the database once 'submit' is clicked. the end of the post request has a redirect('/') so that will reload the page and trigger the get request, which will show the whole list including the new item -->
 
     <script src="js/main.js"></script>
 </body>
