@@ -10,20 +10,24 @@
 <body>
     <h1>Todos</h1>
     <ul>
+        <!-- loops thru the array of documents in our database -->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
+            <!-- creates a span with a strike thru (with a class of completed) if the todo comes back from the database with a completed property with a value of true. It's innertext is taken from the todo property's value-->
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
+            <!-- creates a span with no text decoration if the todo comes back from the database with a completed property with a value of false. It's innertext is taken from the todo property's value -->
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %>
+            <!--Creates a span with the class 'del' which we use in our client side js to trigger our delete request to the database  -->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
-
+    <!-- counts how many todo items have a completed property with the value of false and puts that count into the DOM-->
     <h2>Things left to do: <%= left %></h2>
-
+    <!-- provides the body content for our POST request to the database. It's action value is the path for our POST request -->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
