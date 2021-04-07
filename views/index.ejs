@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>My to do list</title>
+ <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>Todos</h1>
-    <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
-    </ul>
-
-    <h2>Things left to do: <%= left %></h2>
-
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
-
-    <script src="js/main.js"></script>
+ <h1>This is my to do list</h1>
+ <!-- todo action is what our post will use to create docs in database. Our form is important for post request. -->
+ <form action="todo" method="POST">
+  <input type="text" placeholder="Enter to do Item" name="todoItem">
+  <button type="submit">Submit</button>
+ </form>
+ <h2> Things to do today </h2>
+ 
+ <!-- This is what our JS will spit out after it completes the request -->
+ <ul>
+   <!-- zebra is the name of our array that we get back from mongo, we set this in our get request-->
+  <% for(let i = 0; i < zebra.length; i++) { %>
+    <!-- li class for all the items we have to do, this is then selected in our main.js-->
+   <li class ="todoItem">
+     <!--confused on this syntax, not sure where about the syntax below with .completed and completed. But in theory below we are running the if statement to check whether the action has been completed in our db, if it has the property of true, we add another class of css completed to it for styling? Why are there two completed properties/classes? -->
+     <% if(zebra[i].completed === true) {%>
+      <!-- confused on syntax zebra[i].todo-->
+    <span class="completed"><%= zebra[i].todo %></span>
+    <!-- if it's not completed, we don't add anything to it, and it remains false.  -->
+    <% }else { %> 
+      <span><%= zebra[i].todo %></span> 
+      <% } %> 
+      <!-- our lonely delete button-->
+    <span class='del'> Delete </span>
+   </li>
+   <% } %>
+ </ul> 
+ <!-- this is our counter... somehow correlated to mongoDB countDocuments-->
+ <h2> Things left to do <%= left %></h2>
+ <script src="/main.js"></script>
 </body>
+
 </html>
