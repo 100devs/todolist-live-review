@@ -8,15 +8,21 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
+    <h1>Items to Do</h1>
     <ul>
+    <!-- the following block loops through the array created from the database objects in the key zebra-->
+    <!-- it loops for the length of the array zebra-->
     <% for(let i = 0; i < zebra.length; i++) { %>
+        <!-- the list has the class of 'todoItem', which each loop creates with the data from the database-->
         <li class='todoItem'>
+            <!-- checks for the property of completed, which will add styling to the span-->
+            <!-- otherwise, the item will be added to the list from .todo-->
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %>
+            <!-- listens to the event lister to delete the item off the list-->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
@@ -24,6 +30,7 @@
 
     <h2>Things left to do: <%= left %></h2>
 
+    <!-- sends a post method to the server via a submit-->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
