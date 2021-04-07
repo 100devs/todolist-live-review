@@ -10,20 +10,24 @@
 <body>
     <h1>Todos</h1>
     <ul>
+        <!--loop that we are able to add more tasks to-->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
+            <!--check to see if task is completed-->
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
+                <!--sticks word on ejs to see-->
             <span><%= zebra[i].todo %></span>
             <% } %>   
+            <!--delete button buh bye todo-->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
 
     <h2>Things left to do: <%= left %></h2>
-
+    <!--this is where we submit all of our tasks for list-->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
