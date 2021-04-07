@@ -11,19 +11,23 @@
     <h1>Todos</h1>
     <ul>
     <% for(let i = 0; i < zebra.length; i++) { %>
+      <!-- a foor loop in ejs brackets zebra is a var we picked for the loop-->
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
+              <!-- if statment that states if the todo in the DOM is completed (clicked) = true -->
             <span class="completed"><%= zebra[i].todo %></span>
+            <!-- displays what we type to show up in the DOM (client side - what they see)-->
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %>
+            <!-- if it false (else) it just the contents in the DOM without the completed class which makes it have a line through it when clicked -->
             <span class='del'> Delete </span>
         </li>
-    <% } %>    
+    <% } %>
     </ul>
 
     <h2>Things left to do: <%= left %></h2>
-
+<!-- I dont know what this does not sure what left is  -->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
