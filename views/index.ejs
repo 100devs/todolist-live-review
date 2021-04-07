@@ -5,30 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<!-- Below is where we link our css stylesheet-->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>Todos</h1>
     <ul>
+<!-- Below is the for loop we create to go through all the list items that are being added. 
+     The <%  %> allows us to write javascript within an index.ejs. Here, we name the array
+     zebra. We loop through it with length, and it renders it on the page.-->        
     <% for(let i = 0; i < zebra.length; i++) { %>
+<!-- We added a class to the list in order to be able to target certain items for the completed
+     and uncompleted styling.-->        
         <li class='todoItem'>
+<!-- The line below is an if else statement. Here, if the object in the array has the complete
+     property set to true, it changed the object item span class to completed.  -->            
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
+<!-- The next line is the else, if the property is not set to true, it keeps the default .todoItem
+     span class. -->            
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %>
+<!-- Below is the Delete section that listens to the eventListener in the main.js, once delete
+     is clicked, it deletes the item. We added the span class 'del' to be able to focus in on it
+     with the document.querySelector('.del') method.-->               
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
-
+<!-- This keeps count of how many items are left.  I need to review the video for this code to
+     see how this works. I think, this would be checked by using zebra.length??? -->
     <h2>Things left to do: <%= left %></h2>
-
+<!-- This is our regular html type of code. Our action /createTodo is our directory that our
+     app.post uses. The method we have to use is POST because it's is a post!-->
     <form action="/createTodo" method='POST'>
+<!-- Below is the input. The name is important here because it connects to the app.post when
+     it get the insertOne({ todo: request.body.todoItem })-->
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+<!-- This is just the submit button -->        
         <input type="submit">
     </form>
-
+<!-- This connects our user side javascript. Its in a folder, so we use js first, then the forward
+     slash. js/main.js-->
     <script src="js/main.js"></script>
 </body>
 </html>
