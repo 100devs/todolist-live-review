@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+      <!-- Breaking down the above code, as mentioned above, the for loop runs once
+      for every single value in the zebra array, the "single value" being each
+      todo item (or document) that we add into our data base and receive back
+      from our app.get request -->
+      <% for(let i = 0; i < zebra.length; i++) { %>
+      <li class="todoItem">
+        <!-- We setup a condition if this item is 
+          completed then it gets assigned to a 
+          "completed" class and that value gets 
+          added into our db collection as 
+          `completed: true` based on that the relevent span 
+        will show up on our webpage -->
+        <% if(zebra[i].completed === true) {%>
+        <span class="completed"><%= zebra[i].todo %></span>
+        <% }else{ %>
+        <span><%= zebra[i].todo %></span>
+        <% } %>
+        <span class="del"> Delete </span>
+      </li>
+      <% } %>
     </ul>
-
+    <!-- We have a setup a variable `left` here that is linked
+to our GET route and countDocuments method which displays the 
+count of number of todo items left -->
     <h2>Things left to do: <%= left %></h2>
 
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+    <!-- the form submission is setup on our /createTodo route and
+    the value in "name" attribute is used as the variable/property 
+in our db -->
+    <form action="/createTodo" method="POST">
+      <input type="text" placeholder="Enter Todo Item" name="todoItem" />
+      <input type="submit" />
     </form>
 
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>
