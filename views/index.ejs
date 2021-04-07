@@ -10,19 +10,19 @@
 <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
+    <% for(let i = 0; i < zebra.length; i++) { %> <!--Starts a for loop to that will go thru all the items in the zebra array-->
         <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% if(zebra[i].completed === true) {%> <!--if the current item has the completed property set to true do the following-->
+            <span class="completed"><%= zebra[i].todo %></span> <!--place the value of the todo property of the current zebra array item-->
+            <% }else{ %> <!-- if complete is not set to true then-->
+            <span><%= zebra[i].todo %></span> <!--place the value of the todo property of the current zebra array item-->
+            <% } %>   <!-- the above code places the values in a span with the apropiate style class so the user can visually see which items anre completed-->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
 
-    <h2>Things left to do: <%= left %></h2>
+    <h2>Things left to do: <%= left %></h2> <!--displays the number of items not completed from the todo list-->
 
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
