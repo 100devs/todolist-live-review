@@ -1,2 +1,3 @@
+##tells git which files to ignore
 node_modules
 .env
