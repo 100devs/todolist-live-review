@@ -10,6 +10,7 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
@@ -21,6 +22,8 @@
         </li>
     <% } %>    
     </ul>
+    <!-- zebra variable is defined in server.js, it is an array of items from db file -->
+    
 
     <h2>Things left to do: <%= left %></h2>
 
