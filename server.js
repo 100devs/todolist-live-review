@@ -37,11 +37,14 @@ app.post('/createTodo', (req, res)=>{
 })
 //receives the put request from main.js function markComplete()
 app.put('/markComplete', (req, res)=>{
+    //here we are saying, go to our database in mongo named "todos" use the method to update the key value pair from todo using the data stored in the body of rainbowUnicorn (from ejs)
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
+        //Set seems to be a MongoDB method that allows us to update documents found in our database, in this case we are updating "completed" from false to true
         $set: {
             completed: true
         }
     })
+    //here we are saying to log the action as completed on the console log and then also pass it as completed in json form (maybe?)
     .then(result =>{
         console.log('Marked Complete')
         res.json('Marked Complete')
