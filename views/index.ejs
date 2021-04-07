@@ -10,17 +10,22 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %> 
+            <!-- if else to mark item as completed or uncompleted, will affect how data looks through css -->
+            
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
+    <!-- zebra variable is defined in server.js, it is an array of items from db file -->
+    
 
     <h2>Things left to do: <%= left %></h2>
 
@@ -28,6 +33,7 @@
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
+    <!-- action will call the app.put in server.js, feeding the body into call -->
 
     <script src="js/main.js"></script>
 </body>
