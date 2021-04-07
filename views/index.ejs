@@ -10,15 +10,21 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    <!-- loops through the zebra array from the database passed in through the response -->
     <% for(let i = 0; i < zebra.length; i++) { %>
+        <!-- creates an li for each item in the database -->
         <li class='todoItem'>
+            <!-- if a task is completed, it adds the task with a span that has a class of completed -->
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
+            <!-- if a task is not completed, it adds it with a span that has class -->
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
+             <!-- closes else statement -->
             <% } %>   
             <span class='del'> Delete </span>
         </li>
+    <!-- closes for loop -->
     <% } %>    
     </ul>
 
