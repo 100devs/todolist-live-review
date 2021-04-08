@@ -1,34 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <h1>Todos</h1>
-    <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
-    </ul>
+<!DOCTYPE html> <!--not super clear on this, but I think it declares the document type as HTML....don't understand why that's needed -->
+<html lang="en"> <!--opening html tag, I haven't used the "lang" attribute before, but will look at MDN for info -->
+<head> <!--opening tag for header element -->
+    <meta charset="UTF-8"> <!--I don't know what this is, but appears to be setting a baseline for the font character set? -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--I don' t know what this is -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--I don't know what this is, but appears to set viewport (maximum width of page) to the width of the device, and reset zoom to 100%? -->
+    <title>Document</title> <!--title tag to establish title of page (what appears on the browser tab, I think) -->
+    <link rel="stylesheet" href="css/style.css"> <!--linking css file I think -->
+</head> <!--close header element -->
+<body> <!--open tag for body element (main content) -->
+    <h1>Todos</h1> <!--primary content header, only one per page -->
+    <ul> <!--opening tag of unordered (bullet) list -->
+    <% for(let i = 0; i < zebra.length; i++) { %> <!--EJS to use JS function within HTML doc, not at all comfortable with the modulus syntax yet, for loop to iterate through "zebra" array, don't know where that came from though -->
+        <li class='todoItem'> <!--list item with class attribute -->
+            <% if(zebra[i].completed === true) {%> <!--EJS if logic, if element "i" of "zebra" is completed -->
+            <span class="completed"><%= zebra[i].todo %></span> <!--span tag (small amount of text) with class attribute, EJS "i" element of "zebra", don't know what .todo does -->
+            <% }else{ %> <!--EJS else logic to catch the false results of the "if" above -->
+            <span><%= zebra[i].todo %></span> <!--span tag (small amount of text) with class attribute, EJS "i" element of "zebra", don't know what .todo does -->
+            <% } %>    <!--EJS, close the else -->
+            <span class='del'> Delete </span> <!--span tag (small amount of text) with class attribute -->
+        </li> <!--close list item from line 14 -->
+    <% } %>     <!--EJS close for loop on line 13 -->
+    </ul> <!--close unordered list -->
 
-    <h2>Things left to do: <%= left %></h2>
+    <h2>Things left to do: <%= left %></h2> <!--level 2 header (can have multiple per page, size doesn't matter) EJS not sure what "left" does -->
 
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
+    <form action="/createTodo" method='POST'> <!--open tag of form element with action and method attributes. Don't know what the attributes do. -->
+        <input type="text" placeholder="Enter Todo Item" name='todoItem'> <!--input type for form, textbox with placeholder text and name for reference elsewhere -->
+        <input type="submit"> <!--submit button -->
+    </form> <!--close form -->
 
-    <script src="js/main.js"></script>
-</body>
-</html>
+    <script src="js/main.js"></script> <!--I think this is linking the Javascript file, but not really sure -->
+</body> <!--close body element -->
+</html> <!--close html document -->

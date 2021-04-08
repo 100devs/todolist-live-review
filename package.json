@@ -1,14 +1,14 @@
 {
-  "name": "todolist-review-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "todolist-review-app", //app name?
+  "version": "1.0.0", //app version?
+  "description": "", //app description?
+  "main": "index.js", //I don't know what this is, main code file?
+  "scripts": { //I don't know what this is
+    "test": "echo \"Error: no test specified\" && exit 1" //I don't know what this is
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "author": "", //app authoer (guessing)?
+  "license": "ISC", //I don't know what this is
+  "dependencies": { //not real clear on this but, I know it's additional tools that were used and possibly linked so they don't have to be installed every time.
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",

@@ -1,4 +1,5 @@
 {
+    //This increases the size of your font in VS code and terminal for viewability on the streams.
     "editor.fontSize": 42,
     "terminal.integrated.fontSize": 60
 }
