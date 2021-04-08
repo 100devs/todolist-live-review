@@ -10,6 +10,7 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    <!-- loops through our req and displays db info into HTML -->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
@@ -21,9 +22,9 @@
         </li>
     <% } %>    
     </ul>
-
+    <% /* %> counter that shows remaining items  <% */ %>
     <h2>Things left to do: <%= left %></h2>
-
+    <% /* %> form that allows us to take in form data & put it into the db <% */ %>
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
