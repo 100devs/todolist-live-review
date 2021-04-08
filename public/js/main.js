@@ -19,7 +19,7 @@ async function deleteTodo(){ // defines this as an async function
     try{ // asks to try the code inside it
         const response = await fetch('deleteTodo', {// await won't run until the deleteTodo is run
             method: 'delete', // tells the server to delete
-            headers: {'Content-type': 'application/json'}, // tells the browser what to expect & specifies the content type as a json application
+            headers: {'Content-type': 'application/json'}, // tells the server what to expect & specifies the content type as a json application
             body: JSON.stringify({ // sends the data to the server as a string as it has to be
                 'rainbowUnicorn': todoText // sends the span innertext we clicked on to the server as "rainbowUnicorn"
             })
@@ -37,7 +37,7 @@ async function markComplete(){ // defines this as an async function
     try{ // tells it to try the code in the curly brackets
         const response = await fetch('markComplete', { // awaits the fetch of mark complete
             method: 'put', // tells server it's updating something
-            headers: {'Content-type': 'application/json'}, // tells the browser what to expect & specifies the content type as a json application
+            headers: {'Content-type': 'application/json'}, // tells the server what to expect & specifies the content type as a json application
             body: JSON.stringify({ // turns the request into a string
                 'rainbowUnicorn': todoText // calls the content stored "rainbowUnicorn"
             })
@@ -55,7 +55,7 @@ async function undo(){// defines this as an async function
   try { // trys the code inside curly brces
     const response = await fetch("undo", { // defines response as the result of the fetch action
       method: "put", // tells server it's updating something
-      headers: { "Content-type": "application/json" }, // tells browser to expect JSON back
+      headers: { "Content-type": "application/json" }, // tells server to expect JSON back
       body: JSON.stringify({ // turns data into a JSON string
         rainbowUnicorn: todoText, // the data we extracted form the span in assinged rainbowUNicorn
       }),
