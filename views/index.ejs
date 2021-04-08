@@ -10,6 +10,10 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    <!-- opening for loop with <% %>
+    zebra is our array which we can pull out each item within it. this allows us to build an li for each item in the array
+    the span is going to hold the text
+    if the document we pulled has a completed property of true, then we put a span that has a class of completed. this allows us to show a span - one that is completed and one that isn't-->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
@@ -21,14 +25,18 @@
         </li>
     <% } %>    
     </ul>
-
+     <!--  keep track of how many tasks we have left
+    LEFT is part of the GET request with url "/"
+    on refresh, LEFT will display remaning items-->
     <h2>Things left to do: <%= left %></h2>
-
+        <!-- we have method as a post so we can listen for submit that relates to the post request-->
     <form action="/createTodo" method='POST'>
+        <!-- we're looking for the name when grabbing data out of form (todoItem)-->
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <!-- submit - do click event for this-->
         <input type="submit">
     </form>
-
+        <!-- server has access to JS because of express.static('public') in server.js  -->
     <script src="js/main.js"></script>
 </body>
 </html>
