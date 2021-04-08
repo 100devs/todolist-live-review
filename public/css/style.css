@@ -1,7 +1,10 @@
-h1{
-    color: red;
+/*all the content within in the body tags will have a background color of mintcream  */
+body {
+    background-color: mintcream;
 }
-.completed{
+
+/* content within tags having the class completed will change text color from default black to gray and have a gray line through them*/
+.completed {
     text-decoration: line-through;
     color: gray;
 }
