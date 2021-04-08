@@ -1,74 +1,152 @@
+// const express = require('express')
+// const app = express()
+// const MongoClient = require('mongodb').MongoClient
+// const PORT = 2121
+// require('dotenv').config()
+
+// let db,
+//     dbConnectionStr = process.env.DB_STRING,
+//     dbName = 'todo'
+
+// MongoClient.connect(dbConnectionStr, {useUnifiedTopology: true})
+//     .then(client => {
+//         console.log(`Hey, connected to ${dbName} database`)
+//         db = client.db(dbName)
+//     })
+//     .catch(err =>{
+//         console.log(err)
+//     })
+
+// app.set('view engine', 'ejs')
+// app.use(express.static('public'))
+// app.use(express.urlencoded({ extended: true }))
+// app.use(express.json())
+
+// app.get('/', async (req,res)=>{
+//     const todoItems = await db.collection('todos').find().toArray()
+//     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+//     res.render('index.ejs', {zebra: todoItems, left: itemsLeft})
+// })
+
+// app.post('/createTodo', (req, res)=>{
+//     db.collection('todos').insertOne({todo: req.body.todoItem, completed: false})
+//     .then(result =>{
+//         console.log('Todo has been added!')
+//         res.redirect('/')
+//     })
+// })
+
+// app.put('/markComplete', (req, res)=>{
+//     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
+//         $set: {
+//             completed: true
+//         }
+//     })
+//     .then(result =>{
+//         console.log('Marked Complete')
+//         res.json('Marked Complete')
+//     })
+// })
+
+// app.put('/undo', (req, res)=>{
+//     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
+//         $set: {
+//             completed: false
+//         }
+//     })
+//     .then(result =>{
+//         console.log('Marked Complete')
+//         res.json('Marked Complete')
+//     })
+// })
+
+// app.delete('/deleteTodo', (req, res)=>{
+//     db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn})
+//     .then(result =>{
+//         console.log('Deleted Todo')
+//         res.json('Deleted It')
+//     })
+//     .catch( err => console.log(err))
+// })
+ 
+// app.listen(process.env.PORT || PORT, ()=>{
+//     console.log('Server is running, you better catch it!')
+// })    
+
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
+const PORT = process.env.PORT || 6969
 require('dotenv').config()
 
 let db,
-    dbConnectionStr = process.env.DB_STRING,
+    dbConnectionStr = process.env.DB_STRING
     dbName = 'todo'
 
 MongoClient.connect(dbConnectionStr, {useUnifiedTopology: true})
     .then(client => {
-        console.log(`Hey, connected to ${dbName} database`)
+        console.log(`Connected to ${dbName} database`)
         db = client.db(dbName)
     })
-    .catch(err =>{
-        console.log(err)
-    })
+    .catch(err => console.log(err))
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get('/', async (req,res)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    res.render('index.ejs', {zebra: todoItems, left: itemsLeft})
+app.get('/', (req, res) => {
+    db.collection('todos').find().toArray()
+        .then(data => {
+            res.render('index.ejs' , {dbarr : data})
+        })
+        .catch(err => console.log(err))
 })
 
-app.post('/createTodo', (req, res)=>{
-    db.collection('todos').insertOne({todo: req.body.todoItem, completed: false})
-    .then(result =>{
-        console.log('Todo has been added!')
-        res.redirect('/')
-    })
+app.post('/createTodo' , (req, res) => {
+    db.collection('todos').insertOne({todo : req.body.todoItem, completed : false})
+        .then(result => {
+            console.log('Item added')
+            res.redirect('/')
+        })
+        .catch(err => console.log(err))
 })
 
-app.put('/markComplete', (req, res)=>{
-    db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
+app.put('/markComplete', (req, res) => [
+    db.collection('todos').updateOne({todo : req.body.updateItem} , {
         $set: {
             completed: true
         }
     })
-    .then(result =>{
-        console.log('Marked Complete')
-        res.json('Marked Complete')
-    })
-})
+        .then(result => {
+            console.log('Marked Complete')
+            res.json('Marked Complete')
+        })
+        .catch(err => console.log(err))
+])
 
-app.put('/undo', (req, res)=>{
-    db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
+app.put('/markIncomplete', (req,res) => {
+    db.collection('todos').updateOne({todo: req.body.updateItem} , {
         $set: {
             completed: false
         }
     })
-    .then(result =>{
-        console.log('Marked Complete')
-        res.json('Marked Complete')
-    })
+        .then(result => {
+            console.log('Marked Incomplete')
+            res.json('Undo Complete')
+        })
+        .catch(err => console.log(err))
 })
 
-app.delete('/deleteTodo', (req, res)=>{
-    db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn})
-    .then(result =>{
-        console.log('Deleted Todo')
-        res.json('Deleted It')
-    })
-    .catch( err => console.log(err))
+app.delete('/deleteTodo' , (req, res) => {
+    db.collection('todos').deleteOne({todo : req.body.delItem})
+        .then(result => {
+            console.log('Item deleted')
+            res.json('Item deleted')
+        })
+        .catch(err => console.log(err))
 })
- 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log('Server is running, you better catch it!')
-})    
+
+app.listen(PORT, () => {
+    console.log(`Connected to PORT ${PORT}`)
+})

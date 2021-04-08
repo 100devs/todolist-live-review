@@ -4,31 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TODO LIST APP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
-    <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+    <h1>Todos List</h1>
+    <ul class='todoItem'>
+        <% for(let i = 0; i<dbarr.length; i++) { %>
+            <li>
+                <% if(dbarr[i].completed){ %>
+                    <span class="completed"><%= dbarr[i].todo %></span>
+                <% }else{ %>
+                    <span class="item"><%= dbarr[i].todo %></span>
+                <% } %>
+                <span class='del'><i class="fas fa-trash"></i></span>
+            </li>
+        <% } %>
     </ul>
 
-    <h2>Things left to do: <%= left %></h2>
-
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+    <form action="/createTodo" method="post">
+        <input type="text" placeholder="Todo Task" name="todoItem">
+        <button>Send</button>
     </form>
-
-    <script src="js/main.js"></script>
+    <script src='js/main.js'></script>
 </body>
 </html>
