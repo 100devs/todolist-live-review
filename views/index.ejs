@@ -5,30 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> <!--link to css -->
 </head>
 <body>
     <h1>Todos</h1>
-    <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
+    <ul> <!--The todo list -->
+    <% for(let i = 0; i < zebra.length; i++) { %> <!--for loop -->
+        <li class='todoItem'> <!--hold text -->
             <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
+            <span class="completed"><%= zebra[i].todo %></span>  <!--if it's completed -->
             <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
+            <span><%= zebra[i].todo %></span> <!--if it's not completed -->
+            <% } %>
+            <span class='del'> Delete </span> <!--Delete item -->
         </li>
-    <% } %>    
+    <% } %> <!--close for loop -->
     </ul>
 
-    <h2>Things left to do: <%= left %></h2>
+    <h2>Things left to do: <%= left %></h2> <!--How many -->
 
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+    <!--Put stuff into db -->
+    <form action="/createTodo" method='POST'> <!--Know when a post request is submitted -->
+        <input type="text" placeholder="Enter Todo Item" name='todoItem'> <!-- Get data out of form -->
         <input type="submit">
     </form>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script> <!-- Link to js -->
 </body>
 </html>
