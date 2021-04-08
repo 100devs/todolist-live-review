@@ -1,19 +1,21 @@
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('.todoItem span')
 const todoComplete = document.querySelectorAll('.todoItem span.completed')
-
+// call to delete
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
 })
 
+//call to mark complete
 Array.from(todoItem).forEach((el)=>{
     el.addEventListener('click', markComplete)
 })
-
+// call to undo complete
 Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', undo)
 })
 
+//delete function
 async function deleteTodo(){
     const todoText = this.parentNode.childNodes[1].innerText
     try{
@@ -31,7 +33,7 @@ async function deleteTodo(){
         console.log(err)
     }
 }
-
+// mark complete function
 async function markComplete(){
     const todoText = this.parentNode.childNodes[1].innerText
     try{
@@ -49,7 +51,7 @@ async function markComplete(){
         console.log(err)
     }
 }
-
+// undo function
 async function undo(){
     const todoText = this.parentNode.childNodes[1].innerText
     try{
