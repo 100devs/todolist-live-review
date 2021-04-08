@@ -1,17 +1,17 @@
 {
-  "name": "todolist-review-app",
+  "name": "todoapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "todo app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Logan Brock",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "mongodb": "^3.6.5"
+    "mongodb": "^3.6.6"
   }
 }

@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Font Style -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
 </head>
 <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+        <!-- loops through the array, and grabs each document in the array and build an li for each item in array | strike through and delete -->
+        <% for(let i = 0; i < zebra.length; i++) { %>
+            <li class='todoItem'>
+                <% if(zebra[i].completed === true) {%>
+                <span class="completed"><%= zebra[i].todo %></span>
+                <% }else{ %>
+                <span><%= zebra[i].todo %></span>
+                <% } %>   
+                <span class='del'> Delete </span>
+            </li>
+        <% } %>    
     </ul>
 
     <h2>Things left to do: <%= left %></h2>

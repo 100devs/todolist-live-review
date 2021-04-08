@@ -1,2 +1,4 @@
+# ignore all nodue modules becuase github/heroku doesnt need them
 node_modules
+# where we store all of our secrets
 .env
