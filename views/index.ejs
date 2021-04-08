@@ -1,3 +1,8 @@
+// This is the file the server uses to render the html which ultimately gets sent to the client. In our server we had set the view engine to ejs. 
+// Given how our routes are setup this is run at almost every instance there has been any request and the html for the front end is being constantly rendered to reflect the
+// information stored in out data base
+// The use of ejs allows us to use javascript to help dynamically generate the html. in this instance we are using it to populate our to do list with items from our database.
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,24 +15,45 @@
 <body>
     <h1>Todos</h1>
     <ul>
+    
+    // The line  below uses the ejs syntax to indicate the use of javascript logic . this line runs a for loop on the data that is sent from the db when a get request is made,
+    // and creates a new list item for every element in the array received from the db.
+    
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
+    
+    // the line below loops through each element and checks if the task completed property is true
+    
             <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
+           
+           //the line below then creats a span with the class of completed with the todo propery as the innertext. note the different syntax from line 17 indicates this is an inline value being injected by the ejs.
+           
+           <span class="completed"><%= zebra[i].todo %></span>
+           
+           //if the to do task completed property is false a span with no class and the todo property as the innertext is creater
+           
+           <% }else{ %>
             <span><%= zebra[i].todo %></span>
             <% } %>   
-            <span class='del'> Delete </span>
+           
+           <span class='del'> Delete </span>
+           
+           // we create the delete span here and using our main.js we will use an eventlistener to trigger the delete requests to our server. a similar method is also used for our post method requests. (see main.js for more reference)
         </li>
     <% } %>    
     </ul>
 
     <h2>Things left to do: <%= left %></h2>
+    
+    // this line injects the value of tasks that still have the task completed property set as false
 
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
+    
+    // This is the form used to submit our POST requests. note that the action specified on the form matches the route on our server route for the post request.
+    // when the form is submitted the information entered is sent over to the server where the app.post() method then runs accordingly
 
     <script src="js/main.js"></script>
 </body>
