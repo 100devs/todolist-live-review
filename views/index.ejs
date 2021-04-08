@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    //specify characters to UTF-8
     <meta charset="UTF-8">
+    //no idea what this meta tag mean
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    //set viewport width to device default, set scale to 100%
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>Todos</h1>
+    //list with todo items
     <ul>
+    //for loop iterating from 0 to number of items in array zebra, which is pulled from todoList documents in database
     <% for(let i = 0; i < zebra.length; i++) { %>
+        //make a list item with class todoItem
         <li class='todoItem'>
+            //if the item has completed property true,
             <% if(zebra[i].completed === true) {%>
+              //set the list item's class to completed and set item's span text
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
+              //else just set the item span text
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %>
+            //give item a delete "button"
             <span class='del'> Delete </span>
         </li>
-    <% } %>    
+    <% } %>   //close the login of the for loop
     </ul>
-
+    //insert the items from array 'left', pulled from itemsLeft document list into this h2
     <h2>Things left to do: <%= left %></h2>
-
+    //form with the inputs to create another todo list item, with 'post' request method designmated
     <form action="/createTodo" method='POST'>
+        //set input type to text, placeholder to give user directions, name it a todoItem
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
-
+    //link the js
     <script src="js/main.js"></script>
 </body>
 </html>
