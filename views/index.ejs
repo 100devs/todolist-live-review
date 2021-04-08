@@ -4,31 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="css/style.css">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
+    <h1>Todo's</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+        <% for(let i=0; i < zebra.length; i++) { %>
+            <li class='todoItem'>
+                <% if(zebra[i].completed === true) {%>
+                <span class="completed"><%= zebra[i].todo %></span>
+                <% }else{ %>
+                <span><%= zebra[i].todo %></span>
+                <% } %> 
+                <span class="del">Delete</span>
+            </li>
+        <% } %> 
     </ul>
-
     <h2>Things left to do: <%= left %></h2>
 
-    <form action="/createTodo" method='POST'>
+    <form action="/createTodo" method="POST"> 
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
+        <input type="submit" value="Submit">
+     </form>
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>
+
+<!--Below is my original code but it wasn't working with the undo click event because it was counting my comments as another element in the array which threw off the array-->
+<!-- <h1>Todo's</h1>
+<ul>
+    <% for(let i=0; i < zebra.length; i++) { %> < creating a for loop to look through the array-->
+        <!-- <li class='todoItem'> -->
+            <!-- <% if(zebra[i].completed === true) {%>making a if statement conditional -->
+            <!-- <span class="completed"><%= zebra[i].todo %></span> making a compeleted span as part of a conditional -->
+            <!-- <% }else{ %> -->
+            <!-- <span><%= zebra[i].todo %></span>make sure there's no spaces between the span tag because that would be counted -->
+            <!-- <% } %>  -->
+            <!-- <span class="del">Delete</span>creating a class delete for js to use as a delete button -->
+        <!-- </li> -->
+    <!-- <% } %>  -->
+<!-- </ul> --> 
