@@ -1,3 +1,12 @@
 # todolist-live-review
 
-I understand what is going on, but still stuggling on piecing evrything together.
+Full-stack todo list using Express, MongoDB, and Heroku
+
+## Description
+
+## Usage
+
+## Contributing
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
