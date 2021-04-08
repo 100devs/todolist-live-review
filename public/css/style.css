@@ -5,3 +5,6 @@ h1{
     text-decoration: line-through;
     color: gray;
 }
+
+/*When the ejs file runs and the for loop finds that an element in the array from the database has a property of task completed is true it applies the completed class to that 
+list item. as a result the text appears greyed out and has a line through it to give a visual representation of crossing of a task iin our to do list*/
