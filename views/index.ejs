@@ -17,6 +17,7 @@
             <li class='todoItem'>
                 <% if(zebra[i].completed===true) {%>
                     <span class="completed">
+                        <!-- we target the zebra portion of our collection that contains the todo object which will be rendered by the EJS throught he use of the get function -->
                         <%= zebra[i].todo %>
                     </span>
                     <% }else{ %>
@@ -28,12 +29,15 @@
             </li>
             <% } %>
     </ul>
-
+<!-- we target the left portion of our collection that contains the todo object which will be rendered by the EJS throught the use of the get function -->
     <h2>Things left to do: <%= left %>
     </h2>
 
+    <!-- this form allows us to link to the post function in our server through its action and method properties.  -->
     <form action="/createTodo" method='POST'>
+        
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <!-- submit initiates the post function using the action and method properties -->
         <input type="submit">
     </form>
 

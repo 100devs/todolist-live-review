@@ -26,18 +26,29 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         console.log(err)
     })
 
+// ALLOWS us to use EJS
 app.set('view engine', 'ejs')
+//I DONT KNOW
 app.use(express.static('public'))
+//I DONT KNOW
 app.use(express.urlencoded({ extended: true }))
+//I DONT KNOW -- im assuming since we required express above we need to use it -- I dont knwo whaat .json() does
 app.use(express.json())
 
+//get request, it is made every time the page is refreshed or when it is first loaded
 app.get('/', async (req, res) => {
+    // todoItems stores items from the collection todos in an array using the find and toarray methods
     const todoItems = await db.collection('todos').find().toArray()
+    // items left uses the countdocuments method from mongoclient to count how many objects match the completed false, thus giving us a total number of tasks that have yet to be completed
     const itemsLeft = await db.collection('todos').countDocuments({ completed: false })
+    //with the render method, we can target our EJS folder and match areas of zebra and left, in which we will present the contents of the database
     res.render('index.ejs', { zebra: todoItems, left: itemsLeft })
 })
 
+//post allows us to a a task to the todo list, the createTodo route matches the action in the form within EJS
 app.post('/createTodo', (req, res) => {
+    //we access out data base and use the insertOne method to insert a new task
+    //new task is grabbed from the form in the EJS with the name todoItem and put into an object called todo -- additionally we set the class of completed to false, thereby keeping certain css styles from being applies
     db.collection('todos').insertOne({ todo: req.body.todoItem, completed: false })
         .then(result => {
             console.log('Todo has been added!')
@@ -47,37 +58,48 @@ app.post('/createTodo', (req, res) => {
 
 app.put('/markComplete', (req, res) => {
     db.collection('todos').updateOne({ todo: req.body.rainbowUnicorn }, {
+        //we set the class of completed to true 
         $set: {
             completed: true
         }
     })
         .then(result => {
             console.log('Marked Complete')
+            //IDONT KNOW
             res.json('Marked Complete')
         })
 })
 
+//put has the undo route which matches the fetch made in the main.js
 app.put('/undo', (req, res) => {
+      //we go into our data base looking for the todos collection, wherein we assign the content of the body named rainbowUnicorn to 'todo" and use the method updateOne to update it it
     db.collection('todos').updateOne({ todo: req.body.rainbowUnicorn }, {
+        //we set the class of completed to false, thereby applying the corresponding css
         $set: {
             completed: false
         }
     })
         .then(result => {
             console.log('Marked Complete')
+            //I DONT KNOW
             res.json('Marked Complete')
         })
 })
 
+//detele method has the deleteTodo route matching the fetch made in main js 
 app.delete('/deleteTodo', (req, res) => {
+    //we go into our data base looking for the todo collection, wherein we assign the content of the body named rainbowUnicorn to 'todo" and use the method deleteOne to delete it
     db.collection('todos').deleteOne({ todo: req.body.rainbowUnicorn })
+        // we then log to the console
         .then(result => {
             console.log('Deleted Todo')
+            //I DONT KNOW
             res.json('Deleted It')
         })
         .catch(err => console.log(err))
 })
 
+// app.listen method "listens" to what port we are running our server on. The conditional logic lets heroku decide if they want to use their own PORT
 app.listen(process.env.PORT || PORT, () => {
     console.log('Server is running, you better catch it!')
 })

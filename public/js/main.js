@@ -89,7 +89,7 @@ async function undo() {
             method: 'put',
             //I DONT KNOW
             headers: { 'Content-type': 'application/json' },
-            //I DONT KNOW
+            //I DONT KNOW -- i think we assign the value of the node which we clicked to rainbow unicorn which we can then use in the server js to target in the database
             body: JSON.stringify({
                 'rainbowUnicorn': todoText
             })
