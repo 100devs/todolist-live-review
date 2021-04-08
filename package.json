@@ -1,12 +1,12 @@
 {
-  "name": "todolist-review-app",
+  "name": "todoinclassfollowalong",
   "version": "1.0.0",
-  "description": "",
+  "description": "Follow Along Class - To Do List ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Tami Hughes",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
