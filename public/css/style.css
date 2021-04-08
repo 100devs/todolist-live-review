@@ -1,6 +1,8 @@
 h1{
     color: red;
 }
+
+/* items with the completed class toggled with have a line through them as well as a grayed out color */
 .completed{
     text-decoration: line-through;
     color: gray;

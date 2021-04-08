@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,28 +8,40 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+        <!-- creates a loop that creates a new li everytime a new task is posted-->
+        <% for(let i=0; i < zebra.length; i++) { %>
+            <li class='todoItem'>
+                <% if(zebra[i].completed===true) {%>
+                    <span class="completed">
+                        <!-- we target the zebra portion of our collection that contains the todo object which will be rendered by the EJS throught he use of the get function -->
+                        <%= zebra[i].todo %>
+                    </span>
+                    <% }else{ %>
+                        <span>
+                            <%= zebra[i].todo %>
+                        </span>
+                        <% } %>
+                            <span class='del'> Delete </span>
+            </li>
+            <% } %>
     </ul>
+<!-- we target the left portion of our collection that contains the todo object which will be rendered by the EJS throught the use of the get function -->
+    <h2>Things left to do: <%= left %>
+    </h2>
 
-    <h2>Things left to do: <%= left %></h2>
-
+    <!-- this form allows us to link to the post function in our server through its action and method properties.  -->
     <form action="/createTodo" method='POST'>
+        
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <!-- submit initiates the post function using the action and method properties -->
         <input type="submit">
     </form>
 
     <script src="js/main.js"></script>
 </body>
+
 </html>
