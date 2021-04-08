@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,28 +7,31 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <h1>Todos</h1>
-    <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
-    </ul>
+    <body>
+        <section>
+            <img src="image/Whole_Foods_Market_logo.png" alt="Whole Foods Logo">
+            <h1>Grocery List</h1>
+                <ul>
+                <% for(let i = 0; i < zebra.length; i++ ) { %>  
+                    <li class='todoItem'>
+                        <% if(zebra[i].completed === true) {%>
+                        <span class="completed"><%= zebra[i].todo %></span> 
+                        <% }else{ %>
+                        <span><%= zebra[i].todo %></span> 
+                        <% } %>
+                        <span class="del">Delete</span>
+                    </li>
+                <% } %>  
+                </ul>
 
-    <h2>Things left to do: <%= left %></h2>
+                <h4>Items left to buy: <%= left %></h4>
 
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
-
+            <form action="/createTodo" method='POST'>
+                <input type="text" placeholder="Items to buy" name="todoItem">
+                <input type="submit">
+            </form> 
+           
+        </section> 
     <script src="js/main.js"></script>
 </body>
 </html>
