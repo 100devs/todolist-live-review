@@ -1,6 +1,8 @@
+/*make the important stuff red*/
 h1{
     color: red;
 }
+/*if item is completed, strike-through and gray out*/
 .completed{
     text-decoration: line-through;
     color: gray;
