@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+      <!-- we are calling our array zebra. look at res.render in the get request -->
+      <% for(let i = 0; i < zebra.length; i++) {%>
+      <li class="todoItem">
+        <!-- conditional to identify completed tasks. in the ejs you can program to display only the not completed spans-->
+        <% if(zebra[i].completed === true) { %>
+        <span class="completed"><%= zebra[i].todo %></span>
+        <% }else{ %>
+        <!-- make sure that your text matches exactly... ex: remove spaces. or take care of them in the js file -->
+        <span><%= zebra[i].todo %></span>
+        <% } %>
+        <!-- <span class="fa fa-thumbs-up"></span> -->
+        <span class="del">Delete</span>
+        <!-- <span class="del fa fa-trash"></span> -->
+      </li>
+      <% } %>
     </ul>
 
     <h2>Things left to do: <%= left %></h2>
-
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+    <!-- create a form so we can put stuff into our database. The method of POST will make this a POST request -->
+    <form action="/createTodo" method="POST">
+      <!-- the name = "todoItem" is really important because that is how we are going to look for the info that the user is submiting-->
+      <input type="text" placeholder="Enter Todo Item" name="todoItem" />
+      <input type="submit" />
     </form>
 
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>
