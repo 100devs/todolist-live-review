@@ -1,7 +1,8 @@
-h1{
-    color: red;
+h1{ //primary header/title, only one per page
+    color: red; //makes the h1 font appear red
 }
-.completed{
+.completed{ //class element
+    //adds strikethrough effect and grey font color
     text-decoration: line-through;
     color: gray;
 }
