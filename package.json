@@ -1,17 +1,17 @@
 {
-  "name": "todolist-review-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "todolist-review-app",//Name of app
+  "version": "1.0.0",//Version # of app
+  "description": "",//Description of app
+  "main": "index.js",//Main page of app? Or main js sheet?
+  "scripts": {//Scripts that run in this app.
+    "test": "echo \"Error: no test specified\" && exit 1"//Test message?
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "mongodb": "^3.6.5"
+  "author": "",//Author of app.
+  "license": "ISC",//License of app.
+  "dependencies": {//Dependencies in app. 
+    "dotenv": "^8.2.0",//I don't know this dependency.
+    "ejs": "^3.1.6",//EJS is a modified version of HTML that lets you have JS in it.
+    "express": "^4.17.1",//Express makes things run more smoothly.
+    "mongodb": "^3.6.5"//MongoDB lets us connect this to an online database.
   }
 }
