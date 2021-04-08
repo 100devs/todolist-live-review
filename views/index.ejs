@@ -5,30 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> <!--links to css file-->
 </head>
 <body>
-    <h1>Todos</h1>
+    <h1>Todos</h1><!--H1 header text-->
+
+    <!--unordered list that holds all todo items-->
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
+    <% for(let i = 0; i < zebra.length; i++) { %> <!--a loop that iterates through zebra and adds item to the li-->
         <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
+            <% if(zebra[i].completed === true) {%> <!--checks if completed === true of each object in the db-->
+            <span class="completed"><%= zebra[i].todo %></span><!--if completed, class="completed" is added-->
             <% }else{ %>
-            <span><%= zebra[i].todo %></span>
+            <span><%= zebra[i].todo %></span><!--if completed does not equal true, no class is added-->
             <% } %>   
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
 
-    <h2>Things left to do: <%= left %></h2>
+    <h2>Things left to do: <%= left %></h2><!--updates with number of things left to do-->
 
+    <!--form that sends info to db-->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script><!--links to main.js file-->
 </body>
 </html>

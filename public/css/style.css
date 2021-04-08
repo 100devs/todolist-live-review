@@ -1,7 +1,11 @@
+
+/* sets the text color of h1 in the HTML to red */
 h1{
-    color: red;
+    color: red; /* sets the text color of h1 in the HTML to red */
 }
+
+
 .completed{
-    text-decoration: line-through;
-    color: gray;
+    text-decoration: line-through; /*sets the text of the completed class to have line trought it*/
+    color: gray; /*sets the text color of completed class to gray*/
 }

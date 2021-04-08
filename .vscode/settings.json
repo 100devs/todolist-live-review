@@ -1,4 +1,4 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 60
+    "editor.fontSize": 12,//sets the font size of the text in the workspace to 12
+    "terminal.integrated.fontSize": 12//sets the font size of the text in the terminal to 12
 }
