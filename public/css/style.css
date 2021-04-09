@@ -1,7 +1,11 @@
-h1{
-    color: red;
+body {
+	font-family: 'Raleway', sans-serif;
 }
-.completed{
-    text-decoration: line-through;
-    color: gray;
+
+h1 {
+	color: red;
+}
+.completed {
+	text-decoration: line-through;
+	color: gray;
 }
