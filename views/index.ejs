@@ -8,33 +8,38 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    // Our heading to give a headline to our app
+    <!-- Our heading to give a headline to our app -->
     <h1>Todos</h1>
     <ul>
     <!-- Opening our for loop code block  -->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
+            <!-- Beginning of conditional if-statement to check whether a span is completed or not; if so then the span that will render will have a 'completed' class -->
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
+            <!-- The 'else' in our conditional statement that will render a regular span if not marked as 'completed' -->
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
-            <% } %>   
+            <% } %>
+            <!-- Element to delete our todo items    -->
             <span class='del'> Delete </span>
         </li>
     <!-- Closing our for loop code block         -->
     <% } %>    
     </ul>
 
+    <!-- Tracker to display how many todos are left on the list, by using a variable -->
     <h2>Things left to do: <%= left %></h2>
 
-    // Our simple form to give users an area to input their todo task; additionally we have the method set to 'POST' so we can see that ping in our server
+    <!-- Our simple form to give users an area to input their todo task; additionally we have the method set to 'POST' so we can see that ping in our server -->
     <form action="/createTodo" method='POST'>
-        // Input element with a name that we'll be referring to when we want to grab the data from the form the user enters
+        <!-- Input element with a name that we'll be referring to when we want to grab the data from the form the user enters -->
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        // Input to allow our user to submit the data to the todo list
+        <!-- Input to allow our user to submit the data to the todo list -->
         <input type="submit">
     </form>
 
+    <!-- To connect for our main.js file -->
     <script src="js/main.js"></script>
 </body>
 </html>

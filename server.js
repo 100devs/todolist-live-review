@@ -39,12 +39,13 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-// GET request to the main route
+// GET request to the main route using the await syntax
 app.get('/', async (req,res)=>{
-    // Find all the objects in our database collection and place them into an array
+    // Find all the objects in our database collection and place them into a variable called 'todoitems'
     const todoItems = await db.collection('todos').find().toArray()
+    // Find all the objects in our database that have the completed property with the value of false and store it in a variable called 'itemsLeft'
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    // Rendering our EJS file within our views folder
+    // Rendering our EJS file within our views folder with the data our variables are storing above
     res.render('index.ejs', {zebra: todoItems, left: itemsLeft})
 })
 
@@ -60,34 +61,50 @@ app.post('/createTodo', (req, res)=>{
     })
 })
 
+// Our PUT request route for marking a todo as complete
 app.put('/markComplete', (req, res)=>{
+    // We're going into our database and trying to find a property that matches, while using some built-in syntax to update our todo property from 'false' to 'true'
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
+        // A property built into Mongo
         $set: {
+            // Changing the completed property to 'true'
             completed: true
         }
     })
     .then(result =>{
+        // Logging for ourselves that we've labeled the todo as "marked Complete"
         console.log('Marked Complete')
+        // We're sending a JSON response saying "Marked Complete"
         res.json('Marked Complete')
     })
 })
 
+// Our PUT request route when changing a todo from complete to incomplete/revert back to it's default state
 app.put('/undo', (req, res)=>{
+    // Going into our database that will find a match to the text and target that for any changes we're asking it to make
     db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
+        // A property we have access to with Mongo
         $set: {
+            // Changing our 'completed' property back to false
             completed: false
         }
     })
     .then(result =>{
+        // Logging any changes for ourselves so it's easier to see any changes the server served up
         console.log('Marked Complete')
+        // Sending a json response 
         res.json('Marked Complete')
     })
 })
 
+// DELETE Request route 
 app.delete('/deleteTodo', (req, res)=>{
+    // Going into our database and looking at our todos that matches the property name of 'rainbowUnicorn', which will be deleted
     db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn})
     .then(result =>{
+        // Logging in our console that we successfully deleted our todo
         console.log('Deleted Todo')
+        // Sending a 'Deleted It' string to the json response in our main.js file to answer the fetch
         res.json('Deleted It')
     })
     .catch( err => console.log(err))
