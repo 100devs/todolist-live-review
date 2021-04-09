@@ -23,10 +23,19 @@ app.use(express.static('public')) //Anything in the public folder, the server wi
 app.use(express.urlencoded({extended: true}))//Allows you to view the requests being sent, and pull from them
 app.use(express.json())//Allows you to view the requests being sent, and pull from them
 
-app.get('/', (request, response) => {//Allows you to interact with the ejs file and request stuff from that file
+app.get('/', async (request, response) => {//Allows you to interact with the ejs file and request stuff from that file
+    const toDoListItem = await db.collection('list').find().toArray()//Finds all the documents in the mongo collection and takes them and turns them into an array
+    .then(data =>{//Whenever you see data, its going to be data you got back from the database
+        response.render('index.ejs', {dataItem: data})
+    })
     response.render('index.ejs')//Display the ejs file
 })
 
-app.post('/addTask',  (request, response) =>{//When you click the submit button, it will add the list item to the frontend 
-    db.collection('toDoList').insertOne({})//Pushes the entered item to Mongo
+app.post('/addTask',  (request, response) =>{//When you click the submit button, it will add the list item to the frontend
+    console.log(request.body.toDoListItem)//Logging whatever the user typed into the frontend to appear in the terminal
+    db.collection('list').insertOne({toDoList: request.body.toDoListItem, completed: false})//Pushes the entered item to Mongo
+    .then(result =>{
+        console.log('Todo has been added!')//Message, saying that the item entered into the front-end has been logged
+        response.redirect('/')//Refresh the page with the new information the user entered
+    })
 })
