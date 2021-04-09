@@ -11,23 +11,27 @@
     <section class="contain">
         <h1>To Do List</h1>
         <section class="addATask">
-            <form action="/addTask" action="POST">
-                <input type="text" placeholder="Type task here" name="content">
+            <form action="/addTask" method="POST">
+                <input type="text" placeholder="Type task here" name="toDoListItem">
                 <button type="submit">Submit</button>
             </form>
         </section>
         <section class="toDo">
             <ul>
-                <!--todo-list-->
-                    <li>
-                        <!--todo-list-item-->
-                        <div class="todo-list-item">
-                        </div>
-                        <div class="ed">
-                            <button class="edit">Edit</button>
-                            <button class="delete">Delete</button>
-                        </div>
-                    </li>
+            <% for(let i = 0; i < dataItem.length; i++) { %>
+                <li>
+                    <span><%= dataItem[i].list %></span>
+                </li>
+            <% } %>
+                <li>
+                    <!--todo-list-item-->
+                    <div class="todo-list-item">
+                    </div>
+                    <div class="ed">
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </li>
             </ul>
         </section>
         <section class="complete"></section>
