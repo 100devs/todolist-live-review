@@ -11,7 +11,7 @@ require('dotenv').config()
 
 // db variable holds the connection to our database
 let db,
-    // The string assigned to us from Mongo Atlas so we can talk with our database
+    // The string assigned to us from Mongo Atlas so we can talk with our database. The actual string is in our .env file
     dbConnectionStr = process.env.DB_STRING,
     // The name of our database
     dbName = 'todo'
