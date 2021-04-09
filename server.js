@@ -110,7 +110,7 @@ app.delete('/deleteTodo', (req, res)=>{
     .catch( err => console.log(err))
 })
 
-// Function that listens for port connections that enables our server to run
+// Function that listens for port connections that enables our server to run, whether something chosen by our host or our own local port
 app.listen(process.env.PORT || PORT, ()=>{
     // Logging to confirm that our server is indeed running.
     console.log('Server is running, you better catch it!')
