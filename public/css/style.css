@@ -1,7 +1,295 @@
-h1{
-    color: red;
+/* nanum-gothic-regular - latin */
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/nanum-gothic-v17-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/nanum-gothic-v17-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/nanum-gothic-v17-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/nanum-gothic-v17-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/nanum-gothic-v17-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/nanum-gothic-v17-latin-regular.svg#NanumGothic') format('svg'); /* Legacy iOS */
 }
+
+/* nanum-gothic-700 - latin */
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/nanum-gothic-v17-latin-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/nanum-gothic-v17-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/nanum-gothic-v17-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/nanum-gothic-v17-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/nanum-gothic-v17-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/nanum-gothic-v17-latin-700.svg#NanumGothic') format('svg'); /* Legacy iOS */
+}
+
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/open-sans-v18-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/open-sans-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/open-sans-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/open-sans-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/open-sans-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/open-sans-v18-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+.yellowTheme {
+    --appFont: black;
+    --headerFont: black;
+    --background: white;
+    --lightList: lightyellow;
+    --darklist: lightgoldenrodyellow;
+    --strikethrough: lightgrey;
+    --link: yellow;
+}
+
+/* .coffeeTheme {
+    --appFont: black;
+    --headerFont: black;
+    --background: white;
+    --lightList: lightyellow;
+    --darklist: lightgoldenrodyellow;
+    --strikethrough: lightgrey;
+}
+
+.pinkTheme {
+    --appFont: black;
+    --headerFont: black;
+    --background: white;
+    --lightList: lightyellow;
+    --darklist: lightgoldenrodyellow;
+    --strikethrough: lightgrey;
+}
+
+.darkTheme {
+    --appFont: ghostwhite;
+    --headerFont: ghostwhite;
+    --background: black;
+    --lightList: rgb(93, 92, 104);
+    --darklist: rgb(105, 104, 117);
+    --strikethrough: lightgrey;
+} */
+
+.github-corner.darkmode {
+    display: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background: var(--background);
+    color: (var(--appFont))
+}
+
+main {
+    max-width: 730px;
+    margin: 0 auto;
+}
+
+footer span {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    background: var(--appFont);
+    color: var(--background);
+    border-top-right-radius: 15px;
+}
+
+footer a,
+footer a:visited,
+footer a:active {
+    color: var(--background);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--link);
+}
+
+form input {
+    font-family: "Nanum Gothic", sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+input.text {
+    width: 100%;
+    height: 2em;
+    font-size: 2em;
+    padding: 1em;
+}
+
+input.submit {
+    width: auto;
+    padding: 1em;
+    border: none;
+    background-color: var(--headerFont);
+    color: var(--background);
+    margin: 1em;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+h1, h2 {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: var(--headerFont);
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 0;
+}
+
+header li {
+    margin: 15px;
+}
+
+.toDoList {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 200px;
+}
+
+.toDoList li {
+    font-size: 1.3em;
+    list-style-position: inside;
+    padding: 5px 20px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    /* word-wrap: break-word; */
+    overflow-wrap: break-word;
+}
+
+
+.toDoList li:nth-child(even) {
+    background: var(--darklist);
+}
+
+.toDoList li:nth-child(odd) {
+    background: var(--lightList);
+}
+
+.toDoList ul {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .completed{
     text-decoration: line-through;
-    color: gray;
+    color: var(--strikethrough);
 }
+
+.todoItem span {
+    cursor: pointer;
+}
+
+/* scrollbar styles */
+/* html::-webkit-scrollbar {
+  width: 11px;
+}
+
+html {
+  scrollbar-width: 3em;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+html::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 20px;
+  border: 3px solid var(--scrollbarBG);
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollhoverBG);
+} */
+
+/* Chris Coyier's article at css tricks: https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/ */
+.dont-break-out {
+
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+}
+
+/* animations */
+.github-corner:hover .octo-arm {
+                animation: octocat-wave 560ms ease-in-out
+            }
+        
+            @keyframes octocat-wave {
+        
+                0%,
+                100% {
+                    transform: rotate(0)
+                }
+        
+                20%,
+                60% {
+                    transform: rotate(-25deg)
+                }
+        
+                40%,
+                80% {
+                    transform: rotate(10deg)
+                }
+            }
+        
+            @media (max-width:500px) {
+                .github-corner:hover .octo-arm {
+                    animation: none
+                }
+        
+                .github-corner .octo-arm {
+                    animation: octocat-wave 560ms ease-in-out
+                }
+            }
