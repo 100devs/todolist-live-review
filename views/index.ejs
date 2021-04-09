@@ -29,7 +29,7 @@
                 </h2>
                 <form action="/createTodo" method="POST"> <!-- here is the form which will send info to server.js through /createTodo -->
                     <input class="text" type="text" name="todoItem" placeholder="enter an item">
-                    <input type="hidden" name="userDate" value="<%= date.get %>">
+                    <input type="hidden" name="userDate" value="<%= new Date() %>">
                     <input class="submit" type="submit" value="Add it to the list!">
                 </form>
                 <ul>
