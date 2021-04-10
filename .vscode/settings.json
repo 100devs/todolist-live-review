@@ -1,4 +1,3 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 60
+    "terminal.integrated.fontSize": 60 //Makes everything really big I totally didnt spend too long figuring out how to resize in vscode without seeing this
 }
