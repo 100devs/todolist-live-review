@@ -1,14 +1,16 @@
+//requirements
+
 {
-  "name": "todolist-review-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "todolist-review-app", //most important
+  "version": "1.0.0",            //most important
+  "description": "",             //helps discover package as listen in npm search
+  "main": "index.js",            //module ID, primary entry point to program, default index.js
+  "scripts": {                   //contains script commands 
+    "test": "echo \"Error: no test specified\" && exit 1"  //key is the lifecycle event--value is comman run at that point
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "license": "ISC",              //licensed under multiple common licenses
+  "dependencies": {              //maps a package name to a version range
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
