@@ -1,6 +1,8 @@
+/* Some styling to jazz up our header 1 */
 h1{
     color: red;
 }
+/* Creating styling that will show for the elements that have the completed class */
 .completed{
     text-decoration: line-through;
     color: gray;
