@@ -9,6 +9,11 @@
 </head>
 <body>
     <h1>Todos</h1>
+    <!-- Below code is ejs used to add, delete, and update objects. zebra is our array, 
+        and can be added, updated as completed or not, and deleted. The for loop allows 
+        us to add additional arrays (or zebras). The if statement allows us to give an 
+        array the class of completed, or revoke that. If Delete is selected, this gives
+        the array the class of 'delete'-->
     <ul>
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
@@ -21,9 +26,11 @@
         </li>
     <% } %>    
     </ul>
-
+<!-- The h2 gives us a count of objects that remain in the database, linking 
+        us to the 'left: itemsLeft' that we resolve and render in our app.get  -->
     <h2>Things left to do: <%= left %></h2>
-
+<!-- This is our app.post linked to our ejs, where the createTodo function is called
+        and one todo item is created in our server and saved here to the form. -->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
