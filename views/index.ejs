@@ -10,9 +10,11 @@
 <body>
     <h1>Todos</h1>
     <ul>
+        <!-- dynamically create list of completed, (remove deleted) items on the page -->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
             <% if(zebra[i].completed === true) {%>
+            <!-- add a completed item to the page -->
             <span class="completed"><%= zebra[i].todo %></span>
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
@@ -21,14 +23,14 @@
         </li>
     <% } %>    
     </ul>
-
+    <!-- show items with completed=false -->
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
-
+    <!-- link the main.js file -->
     <script src="js/main.js"></script>
 </body>
 </html>
