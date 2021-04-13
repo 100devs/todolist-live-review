@@ -2,33 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do List</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
     <h1>Todos</h1>
+
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+        <!-- enable us to run once for every value inside zebra array -->
+        
+       <% for(let i=0; i < zebra.length; i++) { %>
+            <li class="todoItem">
+                <% if(zebra[i].completed === true) {%>      <!-- if its completed the line below will run, if not it will run the else -->
+                <span class="completed"><%= zebra[i].todo %></span>
+                <% }else{ %>
+                    <span><%= zebra[i].todo %></span>
+                <% } %>
+                <span class="del">Delete</span>
+            </li>
+        <% } %>
     </ul>
-
-    <h2>Things left to do: <%= left %></h2>
-
-    <form action="/createTodo" method='POST'>
+    <!-- write how many things left to do countdown-->
+    <h2>Things left to Do: <%= left %></h2>
+<!-- a form for user to write an item for todo list, in text form and a submit button -->
+    <form action="/createTodo" method="POST">
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
 
-    <script src="js/main.js"></script>
+    <script src="javaS/main.js"></script>
 </body>
 </html>

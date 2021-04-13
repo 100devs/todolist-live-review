@@ -1,7 +1,10 @@
-h1{
-    color: red;
+/* make headings red */
+h1 {
+    color: red;  
 }
+
+/* when item is mark completed, put a line thru it and make it grey */
 .completed{
     text-decoration: line-through;
-    color: gray;
+    color: grey;
 }
