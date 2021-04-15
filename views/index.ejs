@@ -20,7 +20,8 @@
             <ul>
             <% for(let i = 0; i < dataItem.length; i++) { %>
                 <li>
-                    <span> <%= dataItem[i].toDoList %> </span>
+                    <span><%= dataItem[i].toDoList %></span>
+                    <button class="delete">Delete</button>
                 </li>
             <% } %>
                 <li>
@@ -29,7 +30,6 @@
                     </div>
                     <div class="ed">
                         <button class="edit">Edit</button>
-                        <button class="delete">Delete</button>
                     </div>
                 </li>
             </ul>
