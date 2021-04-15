@@ -28,11 +28,20 @@ app.get('/', async (request, response) => {//Allows you to interact with the ejs
     response.render('index.ejs', {dataItem: data}) //Whenever you see data, its going to be data you got back from the database
 })
 
-app.post('/addTask',  (req, res) =>{//When you click the submit button, it will add the list item to the frontend
-    console.log(req.body.toDoListItem)//Logging whatever the user typed into the frontend to appear in the terminal
-    db.collection('list').insertOne({toDoList: req.body.toDoListItem, completed: false})//Pushes the entered item to Mongo
+app.post('/addTask',  (request, response) =>{//When you click the submit button, it will add the list item to the frontend
+    console.log(request.body.toDoListItem)//Logging whatever the user typed into the frontend to appear in the terminal
+    db.collection('list').insertOne({toDoList: request.body.toDoListItem, completed: false})//Pushes the entered item to Mongo
     .then(result =>{
         console.log('Todo has been added!')//Message, saying that the item entered into the front-end has been logged
-        res.redirect('/')//Refresh the page with the new information the user entered
+        response.redirect('/')//Refresh the page with the new information the user entered
     })
+})
+
+app.delete('/deleteListItem', (request, response) => {//Code needed to reflect whats happening in the main.js folder
+   db.collection('list').deleteOne({toDoList:request.body.removedToDoItem}) //Adding delete functionality to the frontend and having it also reflect on the server
+    .then(result => {
+        console.log('A ToDoListItem has been removed')//Let's you know that the item was removed in the console of the site
+        response.json('Removed')
+    })
+    .catch(err => console.log(err))
 })
