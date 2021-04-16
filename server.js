@@ -38,10 +38,22 @@ app.post('/addTask',  (request, response) =>{//When you click the submit button,
 })
 
 app.delete('/deleteListItem', (request, response) => {//Code needed to reflect whats happening in the main.js folder
-   db.collection('list').deleteOne({toDoList:request.body.removedToDoItem}) //Adding delete functionality to the frontend and having it also reflect on the server
+   db.collection('list').deleteOne({toDoList:request.body.item}) //Adding delete functionality to the frontend and having it also reflect on the server
     .then(result => {
         console.log('A ToDoListItem has been removed')//Let's you know that the item was removed in the console of the site
         response.json('Removed')
     })
     .catch(err => console.log(err))
+})
+
+app.put('/markAsDone', (request, response) => {
+    db.collection('list').updateOne({toDoList: request.body.item},{//When you click on the todolist item on the frontend, it will forward that to mongo to be updated and changed to done/complete
+        $set: { //Object in Mongo stuff
+            done: true
+        }
+    })
+    .then(result => {
+        console.log('Marked as Done')
+        response.json('Done')
+    })
 })
