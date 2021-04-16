@@ -79,3 +79,7 @@ form button {
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+.done {
+    text-decoration: line-through;
+    color: gray;
+}
