@@ -16,6 +16,9 @@
                 <button type="submit">Submit</button>
             </form>
         </section>
+        <section class="leftToDo">
+            <h2>Things left to do: <%= leftToDo %></h2>
+        </section>
         <section class="toDo">
             <ul>
             <% for(let i = 0; i < dataItem.length; i++) { %>
@@ -39,7 +42,6 @@
                 </li>
             </ul>
         </section>
-        <section class="complete"></section>
     </section>
 </body>
 <script src='js/main.js'></script>

@@ -24,8 +24,9 @@ app.use(express.urlencoded({extended: true}))//Allows you to view the requests b
 app.use(express.json())//Allows you to view the requests being sent, and pull from them
 
 app.get('/', async (request, response) => {//Allows you to interact with the ejs file and request stuff from that file
-    const data = await db.collection('list').find().toArray()//Finds all the documents in the mongo collection and takes them and turns them into an array
-    response.render('index.ejs', {dataItem: data}) //Whenever you see data, its going to be data you got back from the database
+    const listItems = await db.collection('list').find().toArray()//Finds all the documents in the mongo collection and takes them and turns them into an array
+    const toDoLeft = await db.collection('list').countDocuments({done: false})
+    response.render('index.ejs', {dataItem: listItems, leftToDo: toDoLeft})
 })
 
 app.post('/addTask',  (request, response) =>{//When you click the submit button, it will add the list item to the frontend
@@ -54,6 +55,18 @@ app.put('/markAsDone', (request, response) => {
     })
     .then(result => {
         console.log('Marked as Done')
+        response.json('Done')
+    })
+})
+
+app.put('/undoCompleted', (request, response) => {
+    db.collection('list').updateOne({toDoList: request.body.item},{//When you click on the todolist item on the frontend, it will forward that to mongo to be updated and changed back from being complete
+        $set: { //Object in Mongo stuff
+            done: false
+        }
+    })
+    .then(result => {
+        console.log('Unchecked')
         response.json('Done')
     })
 })
