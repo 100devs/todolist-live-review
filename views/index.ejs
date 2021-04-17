@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Sets title of this page -->
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <!-- Load the css file -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <h1>Todos</h1>
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
+      <!-- Access the zebra property and then for each item in the zebra array, output a list item -->
+      <% for(let i = 0; i < zebra.length; i++) { %>
+      <li class="todoItem">
+        <!-- If the zebra item is completed, then apply a class of completed -->
+        <% if(zebra[i].completed === true) {%>
+        <span class="completed"><%= zebra[i].todo %></span>
+        <% }else{ %>
+        <!-- if the zebra items is not completed, then don't need to set a class -->
+        <span><%= zebra[i].todo %></span>
+        <% } %>
+        <!-- Have a delete button here -->
+        <span class="del"> Delete </span>
+      </li>
+      <% } %>
     </ul>
-
+    <!-- Outputs the view for the items left which is what was passed from server.js get method. -->
     <h2>Things left to do: <%= left %></h2>
 
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+    <!-- create a form that POST's to the /createTodo route -->
+    <form action="/createTodo" method="POST">
+      <!-- Input textbox for the input item -->
+      <input type="text" placeholder="Enter Todo Item" name="todoItem" />
+      <!-- Submit button -->
+      <input type="submit" />
     </form>
-
+    <!-- Load the js/main.js file -->
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>
