@@ -21,28 +21,24 @@
         </section>
         <section class="toDo">
             <ul>
-            <% for(let i = 0; i < dataItem.length; i++) { %>
+            <% for(let i=0; i < dataItem.length; i++) { %>
                 <li class="toDoListItems">
-                    <% if(dataItem[i].done === true) {%>
-                    <span class="done"><%= dataItem[i].toDoList %></span>
+                <% if(dataItem[i].done===true) {%>
+                    <span class="done">
+                    <%= dataItem[i].toDoList %>
+                    </span>
                     <% }else{ %>
-                        <span><%= dataItem[i].toDoList %></span>
+                    <span>
+                    <%= dataItem[i].toDoList %>
+                    </span>
                     <% } %>
                     <button class="delete">Delete</button>
                 </li>
-            <% } %>
-                <li>
-                    <!--todo-list-item-->
-                    <div class="todo-list-item">
-                    </div>
-                    <div class="ed">
-                        <button class="edit">Edit</button>
-                        <button class="delete">Delete</button>
-                    </div>
-                </li>
+                    <% } %>
             </ul>
         </section>
     </section>
 </body>
 <script src='js/main.js'></script>
+
 </html>
