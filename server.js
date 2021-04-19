@@ -1,74 +1,74 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require("express"); //Adds express
+const app = express(); //A quicker way to consume express
+const MongoClient = require("mongodb").MongoClient; //Connects to the MongoDB database
+require("dotenv").config(); //Makes it so then we can link the .env file to this file without having to expose our mongo string
+const PORT = 8000; //http://localhost:8000/
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+let db, //Holds the entire database
+  dbConnectionStr = process.env.DB_STRING, //The string thats going to be used to connect to MongoAtlas
+  dbName = "ToDoList"; //Name of the database project
 
-MongoClient.connect(dbConnectionStr, {useUnifiedTopology: true})
-    .then(client => {
-        console.log(`Hey, connected to ${dbName} database`)
-        db = client.db(dbName)
-    })
-    .catch(err =>{
-        console.log(err)
-    })
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //Takes in the connection string/Mongo needs the second line for stuff
+  .then((client) => {
+    //The connection to the database
+    console.log(`Connection to ${dbName} is looking good`); //Lets you know if the connection worked
+    db = client.db(dbName); //Makes it so then, whenever you see "db" you know this line of code is going to connect to the database
+  });
 
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.listen(PORT, () => {
+  //Whenever the server is up and running, it will run this string message
+  console.log("Server is up");
+});
 
-app.get('/', async (req,res)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    res.render('index.ejs', {zebra: todoItems, left: itemsLeft})
+app.set("view engine", "ejs"); //Looks at the ejs file so we can interact with the frontend
+app.use(express.static("public")); //Anything in the public folder, the server will view
+app.use(express.urlencoded({ extended: true })); //Allows you to view the requests being sent, and pull from them
+app.use(express.json()); //Allows you to view the requests being sent, and pull from them
+
+app.get("/", async (request, response) => {
+  //Allows you to interact with the ejs file and request stuff from that file
+  let listItems = await db.collection("list").find().toArray(); //Finds all the documents in the mongo collection and takes them and turns them into an array
+  let toDoLeft = await db.collection("list").countDocuments({done: false});//Counts the list items that are displayed on the frontend
+  response.render("index.ejs", {dataItem: listItems, leftToDo: toDoLeft});
+});
+
+app.post('/addTask', (request, response)=>{//When you click the submit button, it will add the list item to the frontend
+  db.collection('list').insertOne({toDoList: request.body.toDoListItem, done: false})//Pushes the entered item to Mongo
+  .then(result =>{
+    console.log('Todo has been addded!')//Message, saying that the item entered into the front-end has been logged
+    response.redirect('/')//Refresh the page with the new information the user entered
+  })
 })
 
-app.post('/createTodo', (req, res)=>{
-    db.collection('todos').insertOne({todo: req.body.todoItem, completed: false})
-    .then(result =>{
-        console.log('Todo has been added!')
-        res.redirect('/')
-    })
-})
-
-app.put('/markComplete', (req, res)=>{
-    db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
-        $set: {
-            completed: true
+app.put("/markAsDone", (request, response) => {
+  db.collection("list").updateOne({toDoList: request.body.item},{//When you click on the todolist item on the frontend, it will forward that to mongo to be updated and changed to done/complete
+        $set: {//Object in Mongo stuff
+          done: true
         }
-    })
-    .then(result =>{
-        console.log('Marked Complete')
-        res.json('Marked Complete')
-    })
-})
+      })
+    .then(result => {
+      console.log("Marked as Done");
+      response.json("Done");
+    });
+});
 
-app.put('/undo', (req, res)=>{
-    db.collection('todos').updateOne({todo: req.body.rainbowUnicorn},{
-        $set: {
-            completed: false
+app.put("/undoCompleted", (request, response) => {
+  db.collection("list").updateOne({toDoList: request.body.item},{//When you click on the todolist item on the frontend, it will forward that to mongo to be updated and changed back from being complete
+        $set: {//Object in Mongo stuff
+          done: false
         }
-    })
-    .then(result =>{
-        console.log('Marked Complete')
-        res.json('Marked Complete')
-    })
-})
+      })
+    .then(result => {
+      console.log("Unchecked");
+      response.json("Done");
+    });
+});
 
-app.delete('/deleteTodo', (req, res)=>{
-    db.collection('todos').deleteOne({todo:req.body.rainbowUnicorn})
-    .then(result =>{
-        console.log('Deleted Todo')
-        res.json('Deleted It')
-    })
-    .catch( err => console.log(err))
+app.delete('/deleteListItem', (request, response) => {//Code needed to reflect whats happening in the main.js folder
+  db.collection('list').deleteOne({toDoList:request.body.item}) //Adding delete functionality to the frontend and having it also reflect on the server
+  .then(result =>{
+    console.log('A toDoListItem has been removed')//Let's you know that the item was removed in the console of the site
+    response.json('Removed')
+  })
+  .catch(err => console.log(err))
 })
- 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log('Server is running, you better catch it!')
-})    
