@@ -10,18 +10,31 @@
 <body>
     <h1>Todos</h1>
     <ul>
+        <!-- This is the beginning of the EJS which loads our data sent from the MongoDB -->
+        <!-- Begins a for loop which iterates over each property in the zebra array -->
     <% for(let i = 0; i < zebra.length; i++) { %>
+
+        <!-- A list item, created for each item in the zebra array -->
         <li class='todoItem'>
+
+            <!-- Conditional which runs if the nth object has a propery of completed -->
             <% if(zebra[i].completed === true) {%>
+
+                <!-- creates a span in the list item with the name of the object and the class of completed(for CSS styling) -->
             <span class="completed"><%= zebra[i].todo %></span>
+            
             <% }else{ %>
+                <!-- Runs if the item has a complete property of false, creating a span without the "completed" class for CSS -->
             <span><%= zebra[i].todo %></span>
             <% } %>   
+
+            <!-- Each list item rendered also is given a delete button which runs a client-side script to make a DELETE fetch request -->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
-
+    
+<!-- Displays the number of incomplete items, which is generated in the GET request from the database -->
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
