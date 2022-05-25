@@ -10,18 +10,22 @@
 <body>
     <h1>Todos</h1>
     <ul>
+<!-- cycles through all items in array, generates todolist -->
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
+            <!-- sets a completed class on items marked as complete in database -->
             <% if(zebra[i].completed === true) {%>
             <span class="completed"><%= zebra[i].todo %></span>
+            <!-- incompleted list items do not have completed class -->
             <% }else{ %>
             <span><%= zebra[i].todo %></span>
             <% } %>   
+            <!-- adds delete option to every todolist item -->
             <span class='del'> Delete </span>
         </li>
     <% } %>    
     </ul>
-
+<!--  shows number of items left to do -->
     <h2>Things left to do: <%= left %></h2>
 
     <form action="/createTodo" method='POST'>
