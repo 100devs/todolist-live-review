@@ -1,6 +1,8 @@
+/* sets colour of h1 */
 h1{
     color: red;
 }
+/* visibly marks completed todolist item with a strikethrough and a different text colour */
 .completed{
     text-decoration: line-through;
     color: gray;
