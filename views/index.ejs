@@ -7,8 +7,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+<!-- this is what the server view on the user interface as the response on your get request which they are -->
 <body>
+    <!-- h1, heading element -->
     <h1>Todos</h1>
+    <!-- list of the items inside the todosCollection -->
     <ul>
     <% for(let i = 0; i < zebra.length; i++) { %>
         <li class='todoItem'>
@@ -24,6 +28,7 @@
 
     <h2>Things left to do: <%= left %></h2>
 
+    <!-- the form that send its post request to the server. -->
     <form action="/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
